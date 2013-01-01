@@ -1,3 +1,29 @@
+<?php
+/*
+Name: Netatmo PHP Widget
+URI: https://www.potsky.com/code/netatmo/
+Description: A PHP Widget to display weather information of several locations and Netatmo modules
+Version: 0.1
+Date: 2012-11-13
+Author: potsky
+Author URI: http://www.potsky.com/about/
+
+Copyright © 2012 Raphael Barbate (potsky) <potsky@me.com> [http://www.potsky.com]
+This file is part of Netatmo PHP Widget.
+
+Netatmo PHP Widget is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License.
+
+Netatmo PHP Widget is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with Netatmo PHP Widget.  If not, see <http://www.gnu.org/licenses/>.
+*/
+?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="fr" lang="fr">
 <head>

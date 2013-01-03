@@ -1,11 +1,11 @@
 <?php
+
 $NAusername = "____EMAIL_ACCOUNT_HERE____";
 $NApwd      = "____PASS_ACCOUNT_HERE____";
 $NAconfig   = array(
     'client_id'     => '____API_CLIENT_ID_HERE____',
     'client_secret' => '____API_CLIENT_SECRET_HERE____',
 );
-
 
 require_once("Netatmo/NAApiClient.php");
 
@@ -26,6 +26,7 @@ function get_netatmo() {
 		$access_token  = $tokens["access_token"];
 	}
 	catch(NAClientException $ex) {
+		return $ex;
 	}
 
     $device_id = '';
@@ -56,6 +57,7 @@ function get_netatmo() {
 	    }
 	}
 	catch(NAClientException $ex) {
+		return $ex;
 	}
 
 	if ($device_id!='') {
@@ -81,6 +83,7 @@ function get_netatmo() {
 	    			}
 				}
 				catch(NAClientException $ex) {
+					return $ex;
 				}
 	    	}
 	    }

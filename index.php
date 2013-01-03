@@ -3,8 +3,8 @@
 Name: Netatmo PHP Widget
 URI: https://www.potsky.com/code/netatmo/
 Description: A PHP Widget to display weather information of several locations and Netatmo modules
-Version: 0.1
-Date: 2012-11-13
+Version: 0.1.1
+Date: 2013-01-03
 Author: potsky
 Author URI: http://www.potsky.com/about/
 
@@ -90,6 +90,11 @@ along with Netatmo PHP Widget.  If not, see <http://www.gnu.org/licenses/>.
 			font-weight: normal;
 			font-family: Tahoma;
 		}
+		.er {
+			font-size: 10px;
+			font-family: Arial;
+			color: #faa;
+		}
 		.da {
 			font-size: 12px;
 			font-family: Arial;
@@ -121,46 +126,56 @@ function get_color($c,$min=3,$max=30,$r_min=0,$g_min=128,$b_min=255,$r_max=255,$
 include_once('global.inc.php');
 $result = get_netatmo();
 
-if (count($result)>0) {
-	foreach ($result as $data) {
-		$name = $data['station'];
-		if (isset($_GET['n'])) if (strtolower($name)!=strtolower($_GET['n'])) continue;
+if (is_array($result)) {
+	if (count($result)>0) {
+		foreach ($result as $data) {
+			$name = $data['station'];
+			if (isset($_GET['n'])) if (strtolower($name)!=strtolower($_GET['n'])) continue;
 
-		if ((int)$data['results'][1]<40) $humiditycolor = get_color((int)$data['results'][1],20,40,255,0,0,0,255,0);
-		else if ((int)$data['results'][1]>50) $humiditycolor = get_color((int)$data['results'][1],50,80,0,255,0,255,0,0);
-		else $humiditycolor = 'rgb(0,255,0)';
+			if ((int)$data['results'][1]<40) $humiditycolor = get_color((int)$data['results'][1],20,40,255,0,0,0,255,0);
+			else if ((int)$data['results'][1]>50) $humiditycolor = get_color((int)$data['results'][1],50,80,0,255,0,255,0,0);
+			else $humiditycolor = 'rgb(0,255,0)';
 
-		echo '<table>';
-		echo '<tr><td colspan="2" id="title" align="center">'.$name.'</td></tr>';
-		echo '<tr>';
-		echo '	<td id="inside" valign="top" align="left">';
-		echo '		<table>';
-		echo '			<tr><th align="left"><img src="assets/inside.png"/></th><td class="te" style="color:'.get_color((int)$data['results'][0]).'">'.$data['results'][0].'°C</td></tr>';
-		echo '			<tr><th>Humidité</th><td style="color:'.$humiditycolor.'">'.$data['results'][1].'%</td></tr>';
-		echo '			<tr><th>CO2</th><td style="color:'.get_color((int)$data['results'][2],0,3000,0,255,0,255,0,0).'">'.$data['results'][2].'ppm</td></tr>';
-		echo '			<tr><th>Ambiance</th><td style="color:'.get_color((int)$data['results'][3],30,90,0,255,0,255,0,0).'">'.$data['results'][3].'dB</td></tr>';
-		echo '			<tr><td colspan="2" class="da">'.utf8_encode(ucfirst(strftime('Mesure %A %e'))).' à '.utf8_encode(ucfirst(strftime('%H:%M',$data['time']))).'</td></tr>';
-		echo '		</table>';
-		echo '	</td>';
-		echo '	<td id="outside" valign="top" align="right">';
-
-		foreach ($data['m'] as $moduleid=>$datam) {
+			echo '<table>';
+			echo '<tr><td colspan="2" id="title" align="center">'.$name.'</td></tr>';
+			echo '<tr>';
+			echo '	<td id="inside" valign="top" align="left">';
 			echo '		<table>';
-			echo '			<tr><th class="te" style="color:'.get_color((int)$datam['results'][0]).'">'.$datam['results'][0].'°C</th><td align="right"><img src="assets/outside.png" style="margin-right:1px;"/></td></tr>';
-			echo '			<tr><th>Humidité</th><td>'.$datam['results'][1].'%</td></tr>';
-			echo '			<tr><th></th><td></td></tr>';
-			echo '			<tr><th></th><td></td></tr>';
-			echo '			<tr><td colspan="2" class="da">'.utf8_encode(ucfirst(strftime('Mesure %A %e'))).' à '.utf8_encode(ucfirst(strftime('%H:%M',$datam['time']))).'</td></tr>';
+			echo '			<tr><th align="left"><img src="assets/inside.png"/></th><td class="te" style="color:'.get_color((int)$data['results'][0]).'">'.$data['results'][0].'°C</td></tr>';
+			echo '			<tr><th>Humidité</th><td style="color:'.$humiditycolor.'">'.$data['results'][1].'%</td></tr>';
+			echo '			<tr><th>CO2</th><td style="color:'.get_color((int)$data['results'][2],0,3000,0,255,0,255,0,0).'">'.$data['results'][2].'ppm</td></tr>';
+			echo '			<tr><th>Ambiance</th><td style="color:'.get_color((int)$data['results'][3],30,90,0,255,0,255,0,0).'">'.$data['results'][3].'dB</td></tr>';
+			echo '			<tr><td colspan="2" class="da">'.utf8_encode(ucfirst(strftime('Mesure %A %e'))).' à '.utf8_encode(ucfirst(strftime('%H:%M',$data['time']))).'</td></tr>';
 			echo '		</table>';
 			echo '	</td>';
-		}
+			echo '	<td id="outside" valign="top" align="right">';
 
-		echo '</tr></table><br/>';
+			foreach ($data['m'] as $moduleid=>$datam) {
+				echo '		<table>';
+				echo '			<tr><th class="te" style="color:'.get_color((int)$datam['results'][0]).'">'.$datam['results'][0].'°C</th><td align="right"><img src="assets/outside.png" style="margin-right:1px;"/></td></tr>';
+				echo '			<tr><th>Humidité</th><td>'.$datam['results'][1].'%</td></tr>';
+				echo '			<tr><th></th><td></td></tr>';
+				echo '			<tr><th></th><td></td></tr>';
+				echo '			<tr><td colspan="2" class="da">'.utf8_encode(ucfirst(strftime('Mesure %A %e'))).' à '.utf8_encode(ucfirst(strftime('%H:%M',$datam['time']))).'</td></tr>';
+				echo '		</table>';
+				echo '	</td>';
+			}
+
+			echo '</tr></table><br/>';
+		}
+	}
+	else {
+		echo '<table><tr><td><img src="assets/rain.png"/></td><td class="te">&nbsp;Netatmo problem&nbsp;<br/><center><span class="er">';
+		echo 'No device';
+		echo '</center></span></td></tr>';
+		echo '<tr><td colspan="2" style="text-align:center; color:#888">'.utf8_encode(ucfirst(strftime('%A %e %B %Y'))).' à '.utf8_encode(ucfirst(strftime('%H:%M'))).'</td></tr></table>';
 	}
 }
 else {
-	echo '<table><tr><td><img src="assets/rain.png"/></td><td class="te">Station météo non joignable</td></tr>';
-	echo '<tr><td colspan="2" style="text-align:center; color:#888"><br/>'.utf8_encode(ucfirst(strftime('%A %e %B %Y'))).' à '.utf8_encode(ucfirst(strftime('%H:%M'))).'</td></tr></table>';
+	echo '<table><tr><td><img src="assets/rain.png"/></td><td class="te">&nbsp;Netatmo unreachable&nbsp;<br/><center><span class="er">';
+	echo $result->result['error']['message'];
+	echo '</center></span></td></tr>';
+	echo '<tr><td colspan="2" style="text-align:center; color:#888">'.utf8_encode(ucfirst(strftime('%A %e %B %Y'))).' à '.utf8_encode(ucfirst(strftime('%H:%M'))).'</td></tr></table>';
 }
 
 

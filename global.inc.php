@@ -1,16 +1,35 @@
 <?php
-
-$NAusername = "____EMAIL_ACCOUNT_HERE____";
-$NApwd      = "____PASS_ACCOUNT_HERE____";
-$NAconfig   = array(
-    'client_id'     => '____API_CLIENT_ID_HERE____',
-    'client_secret' => '____API_CLIENT_SECRET_HERE____',
-);
-
+require_once("config.inc.php");
 require_once("Netatmo/NAApiClient.php");
 
+$NAcachekey = "netatmo-weather-station-api";
+$NAttl      = 5*60; // every 5 minutes
+
+
+// Clear APC cache if user wants
+//
+if (isset($_GET['cc'])) {
+	if (function_exists('apc_exists')) {
+		apc_delete($NAcachekey);
+	}
+}
+
+
+// Return array with Netatmo informations
+//
 function get_netatmo() {
-	global $NAconfig, $NAusername, $NApwd;
+	global $NAconfig, $NAusername, $NApwd, $NAcachekey, $NAttl;
+
+	if (function_exists('apc_exists')) {
+		if (apc_exists($NAcachekey)) {
+			$return = @unserialize(apc_fetch($NAcachekey));
+			if (is_array($return)) {
+				if (count($return)>0) {
+					return $return;
+				}
+			}
+		}
+	}
 
 	$return = array();
 
@@ -28,6 +47,7 @@ function get_netatmo() {
 	catch(NAClientException $ex) {
 		return $ex;
 	}
+
 
     $device_id = '';
 	try {
@@ -89,6 +109,9 @@ function get_netatmo() {
 	    }
 	}
 
+	if (function_exists('apc_exists')) {
+		apc_store($NAcachekey,serialize($return),$NAttl);
+	}
     return $return;
 }
 

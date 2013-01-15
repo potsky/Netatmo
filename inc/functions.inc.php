@@ -1,23 +1,67 @@
 <?php
-require_once("config.inc.php");
-require_once("Netatmo/NAApiClient.php");
-
-$NAcachekey = "netatmo-weather-station-api";
-$NAttl      = 5*60; // every 5 minutes
-
-
-// Clear APC cache if user wants
-//
-if (isset($_GET['cc'])) {
-	if (function_exists('apc_exists')) {
-		apc_delete($NAcachekey);
-	}
+/*
+ * Simply return a localized text or empty string if the key is empty
+ * Useful when localize variable which can be empty
+ *
+ * @param    string       $text          the text key
+ * @return   string                      the translation
+ */
+function __($text) {
+	if( empty( $text ) )
+		return '';
+	else
+		return gettext($text);
 }
 
 
-// Return array with Netatmo informations
-//
+/*
+ * Simply echo a localized text
+ *
+ * @param    string       $text          the text key
+ * @return   void
+ */
+function _e($text) {
+	echo __($text);
+}
+
+
+/*
+ * Return a color between RGB($r_min,$g_min,$b_min) and RGB($r_max,$g_max,$b_max) according to value $c where min value is $min and max value is $mac
+ *
+ * @param    string        $c                the value
+ * @param    integer       $min=3            the min value corresponding to the min color
+ * @param    integer       $max=30           the max value corresponding to the max color
+ * @param    integer       $r_min=0          min red
+ * @param    integer       $g_min=128        min green
+ * @param    integer       $b_min=255        min blue
+ * @param    integer       $r_max=255        max red
+ * @param    integer       $g_max=0          max green
+ * @param    integer       $b_max=0          max blue
+ * @return   string                          the css rgb element
+ */
+function get_color($c,$min=3,$max=30,$r_min=0,$g_min=128,$b_min=255,$r_max=255,$g_max=0,$b_max=0) {
+	$from_color = array($r_min,$g_min,$b_min);
+	$to_color   = array($r_max,$g_max,$b_max);
+	$from       = $min;
+	$to         = $max;
+	$d          = min($c,$to);
+	$d          = max($d,$from);
+	$c          = 'rgb(';
+	for ($i=0; $i<3; $i++) {
+		$a = $from_color[$i]+round(($d-$from)*($to_color[$i]-$from_color[$i])/($to-$from));
+		$c.= ($i>0) ? ','.$a : $a;
+	}
+	return $c.')';
+}
+
+
+/*
+ * Return array with Netatmo informations
+ *
+ * @return   mixed                          an array with all weather station values or an exception object if error happens
+ */
 function get_netatmo() {
+
 	global $NAconfig, $NAusername, $NApwd, $NAcachekey, $NAttl;
 
 	if (function_exists('apc_exists')) {
@@ -114,4 +158,7 @@ function get_netatmo() {
 	}
     return $return;
 }
+
+
+
 

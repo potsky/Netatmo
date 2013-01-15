@@ -1,5 +1,5 @@
 <?php
-require_once 'AppliCommonPublic.php';
+require_once ( dirname(__FILE__) . DIRECTORY_SEPARATOR . 'AppliCommonPublic.php' );
 
 define('CURL_ERROR_TYPE', 0);
 define('API_ERROR_TYPE',1);//error return from api

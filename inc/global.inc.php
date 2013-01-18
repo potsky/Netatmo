@@ -72,3 +72,33 @@ bindtextdomain( 'messages' , './lang' );
 bind_textdomain_codeset( 'messages' , 'UTF-8' );
 textdomain( 'messages' );
 
+
+
+/*
+ * Query Netatmo API nd retrieve user informations
+ */
+$result = get_netatmo();
+$user   = $result['user'];
+unset( $result['user'] );
+
+
+
+/*
+ * Define Unit
+ */
+if ( isset( $user["administrative"]["unit"] ) ) {
+	$unit = $user["administrative"]["unit"];
+}
+
+if ( defined( 'WIDGET_UNIT' ) ) {
+	$unit = ( (int)WIDGET_UNIT ) % 2;
+}
+
+if ( isset( $_GET['u'] ) ) {
+	$unit = ( (int)$_GET['u'] ) % 2;
+}
+
+
+
+
+

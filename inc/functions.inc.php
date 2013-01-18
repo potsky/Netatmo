@@ -92,6 +92,14 @@ function get_netatmo() {
 		return $ex;
 	}
 
+	$userinfo = array();
+	try {
+	    $userinfo = $client->api("getuser");
+	}
+	catch(NAClientException $ex) {
+		return $ex;
+	}
+	$return['user'] = $userinfo;
 
     $device_id = '';
 	try {

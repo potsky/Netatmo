@@ -11,6 +11,7 @@ $NAconfig   = array(
 );
 
 
+
 /*
  * Allow guest to call index.php with GET account parameters to display other weather stations rather than this below
  * GET parameters are :
@@ -32,6 +33,21 @@ $NAconfig   = array(
  * - GET parameter is the dude
  */
 //define( 'WIDGET_LOCALE' , 'fr_FR' );
+
+
+/*
+ * Override netatmo user preferences set from your device
+ * If a GET parameter local is set, it takes precedence on this
+ *
+ * The precedence order is :
+ * - Netatmo User preference
+ * - Constant below
+ * - GET parameter is the dude
+ *
+ * accepted values are 0 for Celcius or 1 for Fahrenheit
+ */
+//define( 'WIDGET_UNIT' , 0 );
+//define( 'WIDGET_UNIT' , 1 );
 
 
 /*

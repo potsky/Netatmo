@@ -25,8 +25,6 @@ along with Netatmo PHP Widget.  If not, see <http://www.gnu.org/licenses/>.
 */
 
 require_once( 'inc' . DIRECTORY_SEPARATOR . 'global.inc.php' );
-$result = get_netatmo();
-
 
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -51,6 +49,7 @@ $when = sprintf( __('%1$s %2$s %3$s %4$s at %5$s:%6$s'),
 	strftime( '%M' )
 );
 
+
 if ( is_array( $result ) ) {
 
 	if ( count( $result ) > 0 ) {
@@ -70,7 +69,11 @@ if ( is_array( $result ) ) {
 			else
 				$humiditycolor = 'rgb( 0,255,0 )';
 
-			$when = sprintf( __('measured %1$s %2$s at %5$s:%6$s'), 
+			$tempc = (float) $data['results'][0];
+			$tempf = ( 9 / 5 ) * $tempc + 32;
+			$temp  = round( ($unit == 0) ? $tempc : $tempf , 1 );
+
+			$when  = sprintf( __('measured %1$s %2$s at %5$s:%6$s'), 
 				utf8_encode( ucfirst( strftime( '%A' ,$data['time'] ) ) ),
 				strftime( '%e' ,$data['time'] ),
 				utf8_encode( ucfirst( strftime( '%B' ,$data['time'] ) ) ),
@@ -85,7 +88,9 @@ if ( is_array( $result ) ) {
 			echo '	<td id="inside" valign="top" align="left">';
 			echo '		<table>';
 			echo '			<tr><th align="left"><img src="img/inside.png"/></th>';
-			echo '              <td class="te" style="color:' . get_color( (int) $data['results'][0] ) . '">' . sprintf(__('%s°C'),$data['results'][0]) . '</td>';
+			echo '              <td class="te" style="color:' . get_color( (int) $data['results'][0] ) . '">';
+			echo ($unit==0) ? sprintf(__('%s°C'),$temp) : sprintf(__('%s°F'),$temp);
+			echo '              </td>';
 			echo '          </tr>';
 			echo '			<tr><th>' . __('Humidity') . '</th>';
 			echo '               <td style="color:' . $humiditycolor.'">' . sprintf(__('%s%%'),$data['results'][1]) . '</td>';
@@ -102,7 +107,11 @@ if ( is_array( $result ) ) {
 
 			foreach ( $data['m'] as $moduleid=>$datam ) {
 
-				$when = sprintf( __('measured %1$s %2$s at %5$s:%6$s'), 
+				$tempc = (float) $datam['results'][0];
+				$tempf = ( 9 / 5 ) * $tempc + 32;
+				$temp  = round( ($unit == 0) ? $tempc : $tempf , 1 );
+
+				$when  = sprintf( __('measured %1$s %2$s at %5$s:%6$s'), 
 					utf8_encode( ucfirst( strftime( '%A' ,$datam['time'] ) ) ),
 					strftime( '%e' ,$datam['time'] ),
 					utf8_encode( ucfirst( strftime( '%B' ,$datam['time'] ) ) ),
@@ -112,7 +121,9 @@ if ( is_array( $result ) ) {
 				);
 
 				echo '		<table>';
-				echo '			<tr><th class="te" style="color:' . get_color( (int) $datam['results'][0] ) . '">'  . sprintf(__('%s°C'),$datam['results'][0]) . '</th>';
+				echo '			<tr><th class="te" style="color:' . get_color( (int) $datam['results'][0] ) . '">';
+				echo ($unit==0) ? sprintf(__('%s°C'),$temp) : sprintf(__('%s°F'),$temp);
+				echo '              </th>';
 				echo '              <td align="right"><img src="img/outside.png" style="margin-right:1px;"/></td></tr>';
 				echo '			<tr><th>' . __('Humidity') .'</th>';
 				echo '              <td>' . sprintf(__('%s%%'),$datam['results'][1]) . '</td></tr>';

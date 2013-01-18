@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Netatmo Widget\n"
-"POT-Creation-Date: 2013-01-15 10:52+0100\n"
-"PO-Revision-Date: 2013-01-15 10:53+0100\n"
+"POT-Creation-Date: 2013-01-18 22:16+0100\n"
+"PO-Revision-Date: 2013-01-18 22:16+0100\n"
 "Last-Translator: potsky <potsky@me.com>\n"
 "Language-Team: potsky <potsky@me.com>\n"
 "MIME-Version: 1.0\n"
@@ -11,61 +11,66 @@ msgstr ""
 "X-Generator: Poedit 1.5.4\n"
 "X-Poedit-KeywordsList: gettext;gettext_noop;_x;_e;__;esc_attr__;esc_attr_e;"
 "esc_html__;esc_html_e;_ex;esc_attr_x;esc_html_x;_n;_nx;_n_noop;_nx_noop\n"
-"X-Poedit-Basepath: ../\n"
+"X-Poedit-Basepath: ../../../\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-SearchPath-0: .\n"
 
-#: index.php:45
+#: index.php:43
 #, php-format
 msgid "%1$s %2$s %3$s %4$s at %5$s:%6$s"
 msgstr ""
 
-#: index.php:73 index.php:105
+#: index.php:76 index.php:114
 #, php-format
 msgid "measured %1$s %2$s at %5$s:%6$s"
 msgstr ""
 
-#: index.php:88 index.php:115
+#: index.php:92 index.php:125
 #, php-format
 msgid "%s°C"
 msgstr ""
 
-#: index.php:90 index.php:117
+#: index.php:92 index.php:125
+#, php-format
+msgid "%s°F"
+msgstr ""
+
+#: index.php:95 index.php:128
 msgid "Humidity"
 msgstr ""
 
-#: index.php:91 index.php:118
+#: index.php:96 index.php:129
 #, php-format
 msgid "%s%%"
 msgstr ""
 
-#: index.php:93
+#: index.php:98
 msgid "CO2"
 msgstr ""
 
-#: index.php:94
+#: index.php:99
 #, php-format
 msgid "%sppm"
 msgstr ""
 
-#: index.php:96
+#: index.php:101
 msgid "Noise"
 msgstr ""
 
-#: index.php:97
+#: index.php:102
 #, php-format
 msgid "%sdB"
 msgstr ""
 
-#: index.php:131
+#: index.php:142
 msgid "Netatmo problem"
 msgstr ""
 
-#: index.php:132
+#: index.php:143
 msgid "No device"
 msgstr ""
 
-#: index.php:140
+#: index.php:151
 msgid "Netatmo unreachable"
 msgstr ""
 

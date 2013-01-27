@@ -253,6 +253,7 @@ class NAApiClient
         CURLOPT_TIMEOUT        => 60,
         CURLOPT_USERAGENT      => 'netatmoclient',
         CURLOPT_HTTPHEADER     => array("Accept: application/json"),
+        CURLOPT_SSL_VERIFYPEER => FALSE,
     );
 
     /**

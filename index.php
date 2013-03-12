@@ -4,7 +4,7 @@ Name: Netatmo PHP Widget
 URI: https://www.potsky.com/code/netatmo/
 Description: A PHP Widget to display weather information of several locations and Netatmo modules
 Version: 0.3
-Date: 2013-01-03
+Date: 2013-03-10
 Author: potsky
 Author URI: http://www.potsky.com/about/
 

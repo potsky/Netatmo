@@ -5,7 +5,7 @@ require_once( dirname(__FILE__) . DIRECTORY_SEPARATOR . 'Netatmo' . DIRECTORY_SE
 
 
 /*
- * Set remote account if feature is enabled i config.inc.php via constant ALLOW_REMOTE_ACCOUNTING
+ * Set remote account if feature is enabled in config.inc.php via constant ALLOW_REMOTE_ACCOUNTING
  */
 if ( defined( 'ALLOW_REMOTE_ACCOUNTING' ) ) {
 	if ( ALLOW_REMOTE_ACCOUNTING === true ) {
@@ -24,12 +24,12 @@ if ( defined( 'ALLOW_REMOTE_ACCOUNTING' ) ) {
 
 			// Change the APC key too
 			// Set the md5 of passwords to improve user experience when they change them and want to see it does not work anymore in real time
-			$NAcachekey = $NAcachekey . '-' . $_GET['nu'] . '-' . $_GET['nc'] . md5( $_GET['np'] . $_GET['ns'] );
+			define( 'NETATMO_CACHE_KEY' , NETATMO_CACHE_DEFAULT_KEY . '-' . $_GET['nu'] . '-' . $_GET['nc'] . md5( $_GET['np'] . $_GET['ns'] ) );
 		}
 	}
 }
-
-
+if ( ! defined( 'NETATMO_CACHE_KEY' ) )
+	define( 'NETATMO_CACHE_KEY' , NETATMO_CACHE_DEFAULT_KEY );
 
 
 /*
@@ -37,10 +37,9 @@ if ( defined( 'ALLOW_REMOTE_ACCOUNTING' ) ) {
  */
 if ( isset( $_GET['cc'] ) ) {
 	if ( function_exists( 'apc_exists' ) ) {
-		apc_delete( $NAcachekey );
+		apc_delete( NETATMO_CACHE_KEY );
 	}
 }
-
 
 
 
@@ -74,30 +73,60 @@ textdomain( 'messages' );
 
 
 
+
+
 /*
- * Query Netatmo API nd retrieve user informations
+ * Query Netatmo API and retrieve user informations
  */
-$result = get_netatmo();
+$result = get_netatmo( @$_GET['sc'] , @$_GET['sci'] );
+if (isset($result->result['error'])) {
+	// Uncomment this to have more informations. Be carful, your password is in plain text!
+	// var_dump($result);
+	die($result->result['error']);
+}
+
+if (!isset($result['user'])) {
+	// Uncomment this to have more informations. Be carful, your password is in plain text!
+	// var_dump($result);
+	die(__('API format error'));
+}
+
 $user   = $result['user'];
 unset( $result['user'] );
 
 
-
 /*
- * Define Unit
+ * Define Unit System
  */
 if ( isset( $user["administrative"]["unit"] ) ) {
-	$unit = $user["administrative"]["unit"];
+	$unitmetric = $user["administrative"]["unit"];
 }
-
-if ( defined( 'WIDGET_UNIT' ) ) {
-	$unit = ( (int)WIDGET_UNIT ) % 2;
+if ( defined( 'WIDGET_UNIT_METRIC' ) ) {
+	$unitmetric = ( (int)WIDGET_UNIT_METRIC ) % 2;
 }
-
 if ( isset( $_GET['u'] ) ) {
-	$unit = ( (int)$_GET['u'] ) % 2;
+	$unitmetric = ( (int)$_GET['u'] ) % 2;
+}
+if ( ! isset( $unitmetric ) ) {
+	$unitmetric = 0;
 }
 
+
+/*
+ * Define Pressure Unit
+ */
+if ( isset( $user["administrative"]["pressureunit"] ) ) {
+	$unitpressure = $user["administrative"]["pressureunit"];
+}
+if ( defined( 'WIDGET_UNIT_PRESSURE' ) ) {
+	$unitpressure = ( (int)WIDGET_UNIT_PRESSURE ) % 3;
+}
+if ( isset( $_GET['up'] ) ) {
+	$unitpressure = ( (int)$_GET['up'] ) % 3;
+}
+if ( ! isset( $unitpressure ) ) {
+	$unitpressure = 0;
+}
 
 
 

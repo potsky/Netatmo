@@ -1,5 +1,5 @@
 body {
-	background:#333;
+	background-color: #fff;
 	padding: 10px;
 	color: #333;
 	font-family: Arial;
@@ -11,22 +11,21 @@ body {
 table {
 	background:#fff;
 	border-collapse: collapse;
-	border: 0;
+	border: 1px solid #ddd;
 	margin: 0;
 	padding: 0;
 }
 td#title {
-	border-bottom: 1px solid black;
+	border: 1px solid #ddd;
 	height:20px;
 	text-align: center;
 }
-td#inside {
-	border-right: 1px solid black;
+td#inside, td.outside {
+	border: 1px solid #ddd;
 }
-td#outside {
-	border-left: 1px solid black;
-}
-td#inside table, td#outside table {
+td#inside table, td.outside table {
+	border-collapse: collapse;
+	border: 0;
 	width: 260px;
 }
 tr {
@@ -46,6 +45,14 @@ td {
 	padding-left: 5px;
 	padding-right: 5px;
 	text-align: right;
+}
+.mm {
+	color: #888;
+}
+.lt {
+	font-size: 12px;
+	font-family: Arial;
+	color: #aaa;
 }
 .te {
 	font-size: 40px;

@@ -11,7 +11,6 @@ $NAconfig   = array(
 );
 
 
-
 /*
  * Allow guest to call index.php with GET account parameters to display other weather stations rather than this below
  * GET parameters are :
@@ -36,7 +35,7 @@ $NAconfig   = array(
 
 
 /*
- * Override netatmo user preferences set from your device
+ * Override netatmo Unit user preferences set from your device
  * If a GET parameter local is set, it takes precedence on this
  *
  * The precedence order is :
@@ -44,17 +43,57 @@ $NAconfig   = array(
  * - Constant below
  * - GET parameter is the dude
  *
- * accepted values are 0 for Celcius or 1 for Fahrenheit
+ * accepted values are :
+ * - 0 for Metric system (°C/mm)
+ * - 1 for US system (°F/inch)
  */
-//define( 'WIDGET_UNIT' , 0 );
-//define( 'WIDGET_UNIT' , 1 );
+//define( 'WIDGET_UNIT_METRIC' , 0 );
+//define( 'WIDGET_UNIT_METRIC' , 1 );
 
 
 /*
- * APC parameters
+ * Override netatmo Pressure Unit user preferences set from your device
+ * If a GET parameter local is set, it takes precedence on this
+ *
+ * The precedence order is :
+ * - Netatmo User preference
+ * - Constant below
+ * - GET parameter is the dude
+ *
+ * accepted values are :
+ * - 0 for mbar
+ * - 1 for inHg
+ * - 2 for mmHg
+ */
+//define( 'WIDGET_UNIT_PRESSURE' , 0 );
+//define( 'WIDGET_UNIT_PRESSURE' , 1 );
+//define( 'WIDGET_UNIT_PRESSURE' , 2 );
+
+
+/*
+ * You can change this
+ */
+define( 'NETATMO_DEVICE_DEFAULT_VALUES' , 'Humidity,CO2,Noise' );
+define( 'NETATMO_MODULE_DEFAULT_VALUES' , 'Humidity' );
+
+
+/*
+ * Internal
  * No need to change this
  */
-$NAcachekey = "netatmo-weather-station-api";
-$NAttl      = 5*60; // every 5 minutes
+define( 'NETATMO_WIDGET_VERSION'        , '0.2' );
+
+define( 'NETATMO_DEVICE_SCALES'         , '1day,1week,1month' );
+define( 'NETATMO_DEVICE_TYPE_MAIN'      , 'Temperature,Co2,Humidity,Noise,Pressure' );
+define( 'NETATMO_DEVICE_TYPE_MISC'      , 'min_temp,date_min_temp,max_temp,date_max_temp,min_hum,date_min_hum,max_hum,date_max_hum,min_pressure,date_min_pressure,max_pressure,date_max_pressure,min_noise,date_min_noise,max_noise,date_max_noise' );
+define( 'NETATMO_MODULE_TYPE_MAIN'      , 'Temperature,Humidity' );
+define( 'NETATMO_MODULE_TYPE_MISC'      , 'min_temp,date_min_temp,max_temp,date_max_temp,min_hum,date_min_hum,max_hum,date_max_hum' );
+define( 'NETATMO_CACHE_DEFAULT_KEY'     , "netatmo-weather-station-api-" . NETATMO_WIDGET_VERSION );
+define( 'NETATMO_CACHE_TTL'             , 5*60 );
+
+
+
+
+
 
 

@@ -60,22 +60,24 @@ function get_color($c,$min=3,$max=30,$r_min=0,$g_min=128,$b_min=255,$r_max=255,$
  *
  * @return   mixed                          an array with all weather station values or an exception object if error happens
  */
-function get_netatmo() {
+function get_netatmo( $scale = '1day' , $scale_inner = '1day' ) {
 
-	global $NAconfig, $NAusername, $NApwd, $NAcachekey, $NAttl;
+	global $NAconfig, $NAusername, $NApwd;
 
-	if (function_exists('apc_exists')) {
-		if (apc_exists($NAcachekey)) {
-			$return = @unserialize(apc_fetch($NAcachekey));
-			if (is_array($return)) {
-				if (count($return)>0) {
+	if ( function_exists( 'apc_exists' ) ) {
+		if ( apc_exists( NETATMO_CACHE_KEY ) ) {
+			$return = @unserialize( apc_fetch( NETATMO_CACHE_KEY ) );
+			if ( is_array( $return ) ) {
+				if ( count( $return ) > 0 ) {
 					return $return;
 				}
 			}
 		}
 	}
 
-	$return = array();
+	$scale       = ( in_array( $scale , explode( ',' , NETATMO_DEVICE_SCALES ) ) ) ? $scale : '1day';
+	$scale_inner = ( in_array( $scale_inner , explode( ',' , NETATMO_DEVICE_SCALES ) ) ) ? $inner_scale : $scale;
+	$return      = array();
 
 	/*
 	Netatmo job
@@ -105,26 +107,44 @@ function get_netatmo() {
 	try {
 	    $deviceList = $client->api("devicelist");
 	    if (is_array($deviceList["devices"])) {
+
 	    	foreach ($deviceList["devices"] as $device) {
 
 	    		$device_id = $device["_id"];
 
 				$params = array(
-					"scale" =>"max",
-					"type"=>"Temperature,Humidity,Co2,Noise",
-					"date_end"=>"last",
-					"device_id"=>$device_id
+					"scale"     => "max",
+					"type"      => NETATMO_DEVICE_TYPE_MAIN,
+					"date_end"  => "last",
+					"device_id" => $device_id
 				);
-
     			$res = $client->api("getmeasure",'GET',$params);
+
     			if(isset($res[0]) && isset($res[0]["beg_time"])) {
     				$time = $res[0]["beg_time"];
-    				$return[$device_id]['results'] = $res[0]["value"][0];
+    				$vals = explode( ',' , NETATMO_DEVICE_TYPE_MAIN );
+    				foreach( $res[0]["value"][0] as $key => $value )
+						$return[$device_id]['results'][ $vals[$key] ] = $value;
     				$return[$device_id]['name']    = $device["module_name"];
     				$return[$device_id]['station'] = $device["station_name"];
     				$return[$device_id]['type']    = $device["type"];
     				$return[$device_id]['time']    = $res[0]["beg_time"];
     			}
+
+				$params = array(
+					"scale"     => $scale,
+					"type"      => NETATMO_DEVICE_TYPE_MISC,
+					"date_end"  => "last",
+					"device_id" => $device_id
+				);
+    			$res = $client->api("getmeasure",'GET',$params);
+    			if(isset($res[0]) && isset($res[0]["beg_time"])) {
+    				$vals = explode( ',' , NETATMO_DEVICE_TYPE_MISC );
+    				foreach( $res[0]["value"][0] as $key => $value )
+						$return[$device_id]['misc'][ $vals[$key] ] = $value;
+    			}
+
+
 	    	}
 	    }
 	}
@@ -140,18 +160,35 @@ function get_netatmo() {
 		    		$device_id = $module["main_device"];
 
 					$params = array(
-						"scale" =>"max",
-						"type"=>"Temperature,Humidity",
-						"date_end"=>"last",
-						"device_id"=>$device_id,
-						"module_id"=>$module_id
+						"scale"     => "max",
+						"type"      => NETATMO_MODULE_TYPE_MAIN,
+						"date_end"  => "last",
+						"device_id" => $device_id,
+						"module_id" => $module_id
 					);
 
 	    			$res = $client->api("getmeasure",'GET',$params);
 	    			if(isset($res[0]) && isset($res[0]["beg_time"])) {
-	    				$return[$device_id]['m'][$module_id]['results'] = $res[0]["value"][0];
+	    				$vals = explode( ',' , NETATMO_MODULE_TYPE_MAIN );
+   		 				foreach( $res[0]["value"][0] as $key => $value )
+							$return[$device_id]['m'][$module_id]['results'][ $vals[$key] ] = $value;
 	    				$return[$device_id]['m'][$module_id]['name']    = $module["module_name"];
 	    				$return[$device_id]['m'][$module_id]['time']    = $res[0]["beg_time"];
+	    			}
+
+					$params = array(
+						"scale"     => $scale_inner,
+						"type"      => NETATMO_MODULE_TYPE_MISC,
+						"date_end"  => "last",
+						"device_id" => $device_id,
+						"module_id" => $module_id
+					);
+
+	    			$res = $client->api("getmeasure",'GET',$params);
+	    			if(isset($res[0]) && isset($res[0]["beg_time"])) {
+	    				$vals = explode( ',' , NETATMO_MODULE_TYPE_MISC );
+   		 				foreach( $res[0]["value"][0] as $key => $value )
+							$return[$device_id]['m'][$module_id]['misc'][ $vals[$key] ] = $value;
 	    			}
 				}
 				catch(NAClientException $ex) {
@@ -161,8 +198,8 @@ function get_netatmo() {
 	    }
 	}
 
-	if (function_exists('apc_exists')) {
-		apc_store($NAcachekey,serialize($return),$NAttl);
+	if ( function_exists( 'apc_exists' ) ) {
+		apc_store( NETATMO_CACHE_KEY , serialize( $return ) , NETATMO_CACHE_TTL );
 	}
     return $return;
 }

@@ -3,7 +3,7 @@
 Name: Netatmo PHP Widget
 URI: https://www.potsky.com/code/netatmo/
 Description: A PHP Widget to display weather information of several locations and Netatmo modules
-Version: 0.3
+Version: 0.3.1
 Date: 2013-03-10
 Author: potsky
 Author URI: http://www.potsky.com/about/
@@ -40,6 +40,7 @@ require_once( 'inc' . DIRECTORY_SEPARATOR . 'global.inc.php' );
 </head>
 <body>
 <center>
+<div id="container">
 <?php
 $when = sprintf( __('%1$s %2$s %3$s %4$s at %5$s:%6$s'), 
 	utf8_encode( ucfirst( strftime( '%A' ) ) ),
@@ -144,7 +145,7 @@ if ( is_array( $result ) ) {
 					case 'TemperatureMin' :
 						echo '<tr><th valign="top">' . __('Temp Min') . '</th><td valign="top" class="mm">';
 						if ( $unitmetric == 0 )
-							echo sprintf( __('%s°C') , round( (int)$data['misc']['min_temp'] , 1 ) );
+							echo sprintf( __('%s°C') , round( (float)$data['misc']['min_temp'] , 1 ) );
 						else
 							echo sprintf( __('%s°F') , round ( ( 9 / 5 ) * (int)$data['misc']['min_temp'] + 32 , 1) );
 						echo '<br/><span class="lt">';
@@ -163,7 +164,7 @@ if ( is_array( $result ) ) {
 					case 'TemperatureMax' :
 						echo '<tr><th valign="top">' . __('Temp Max') . '</th><td valign="top" class="mm">';
 						if ( $unitmetric == 0 )
-							echo sprintf( __('%s°C') , round( (int)$data['misc']['max_temp'] , 1 ) );
+							echo sprintf( __('%s°C') , round( (float)$data['misc']['max_temp'] , 1 ) );
 						else
 							echo sprintf( __('%s°F') , round ( ( 9 / 5 ) * (int)$data['misc']['max_temp'] + 32 , 1) );
 						echo '<br/><span class="lt">';
@@ -334,7 +335,7 @@ if ( is_array( $result ) ) {
 						case 'TemperatureMin' :
 							echo '<tr><th valign="top">' . __('Temp Min') . '</th><td valign="top" class="mm">';
 							if ( $unitmetric == 0 )
-								echo sprintf( __('%s°C') , round( (int)$datam['misc']['min_temp'] , 1 ) );
+								echo sprintf( __('%s°C') , round( (float)$datam['misc']['min_temp'] , 1 ) );
 							else
 								echo sprintf( __('%s°F') , round ( ( 9 / 5 ) * (int)$datam['misc']['min_temp'] + 32 , 1) );
 							echo '<br/><span class="lt">';
@@ -353,7 +354,7 @@ if ( is_array( $result ) ) {
 						case 'TemperatureMax' :
 							echo '<tr><th valign="top">' . __('Temp Max') . '</th><td valign="top" class="mm">';
 							if ( $unitmetric == 0 )
-								echo sprintf( __('%s°C') , round( (int)$datam['misc']['max_temp'] , 1 ) );
+								echo sprintf( __('%s°C') , round( (float)$datam['misc']['max_temp'] , 1 ) );
 							else
 								echo sprintf( __('%s°F') , round ( ( 9 / 5 ) * (int)$datam['misc']['max_temp'] + 32 , 1) );
 							echo '<br/><span class="lt">';
@@ -439,6 +440,7 @@ else {
 
 
 ?>
+</div>
 </center>
 </body>
 </html>

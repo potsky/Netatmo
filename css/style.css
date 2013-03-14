@@ -8,6 +8,8 @@ body {
 	overflow-x: hidden;
 	overflow-y: hidden;
 }
+#container {
+}
 table {
 	background:#fff;
 	border-collapse: collapse;

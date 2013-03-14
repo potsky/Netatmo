@@ -60,7 +60,7 @@ function get_color($c,$min=3,$max=30,$r_min=0,$g_min=128,$b_min=255,$r_max=255,$
  *
  * @return   mixed                          an array with all weather station values or an exception object if error happens
  */
-function get_netatmo( $scale = '1day' , $scale_inner = '1day' ) {
+function get_netatmo( $scale_device = '1day' , $scale_module = '1day' ) {
 
 	global $NAconfig, $NAusername, $NApwd;
 
@@ -75,9 +75,10 @@ function get_netatmo( $scale = '1day' , $scale_inner = '1day' ) {
 		}
 	}
 
-	$scale       = ( in_array( $scale , explode( ',' , NETATMO_DEVICE_SCALES ) ) ) ? $scale : '1day';
-	$scale_inner = ( in_array( $scale_inner , explode( ',' , NETATMO_DEVICE_SCALES ) ) ) ? $inner_scale : $scale;
-	$return      = array();
+	$scale_device = ( in_array( $scale_device , explode( ',' , NETATMO_DEVICE_SCALES ) ) ) ? $scale_device : '1day';
+	$scale_module = ( in_array( $scale_module , explode( ',' , NETATMO_DEVICE_SCALES ) ) ) ? $scale_module : $scale_device;
+	$return       = array();
+
 
 	/*
 	Netatmo job
@@ -94,6 +95,7 @@ function get_netatmo( $scale = '1day' , $scale_inner = '1day' ) {
 		return $ex;
 	}
 
+
 	$userinfo = array();
 	try {
 	    $userinfo = $client->api("getuser");
@@ -102,6 +104,7 @@ function get_netatmo( $scale = '1day' , $scale_inner = '1day' ) {
 		return $ex;
 	}
 	$return['user'] = $userinfo;
+
 
     $device_id = '';
 	try {
@@ -132,7 +135,7 @@ function get_netatmo( $scale = '1day' , $scale_inner = '1day' ) {
     			}
 
 				$params = array(
-					"scale"     => $scale,
+					"scale"     => $scale_device,
 					"type"      => NETATMO_DEVICE_TYPE_MISC,
 					"date_end"  => "last",
 					"device_id" => $device_id
@@ -177,7 +180,7 @@ function get_netatmo( $scale = '1day' , $scale_inner = '1day' ) {
 	    			}
 
 					$params = array(
-						"scale"     => $scale_inner,
+						"scale"     => $scale_module,
 						"type"      => NETATMO_MODULE_TYPE_MISC,
 						"date_end"  => "last",
 						"device_id" => $device_id,

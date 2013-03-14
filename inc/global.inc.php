@@ -24,12 +24,12 @@ if ( defined( 'ALLOW_REMOTE_ACCOUNTING' ) ) {
 
 			// Change the APC key too
 			// Set the md5 of passwords to improve user experience when they change them and want to see it does not work anymore in real time
-			define( 'NETATMO_CACHE_KEY' , NETATMO_CACHE_DEFAULT_KEY . '-' . $_GET['scd'] . '-' . $_GET['scm'] . '-' . $_GET['nu'] . '-' . $_GET['nc'] . md5( $_GET['np'] . $_GET['ns'] ) );
+			define( 'NETATMO_CACHE_KEY' , NETATMO_CACHE_DEFAULT_KEY . '-' . @$_GET['scd'] . '-' . @$_GET['scm'] . '-' . $_GET['nu'] . '-' . $_GET['nc'] . md5( $_GET['np'] . $_GET['ns'] ) );
 		}
 	}
 }
 if ( ! defined( 'NETATMO_CACHE_KEY' ) )
-	define( 'NETATMO_CACHE_KEY' , NETATMO_CACHE_DEFAULT_KEY . '-' . $_GET['scd'] . '-' . $_GET['scm'] );
+	define( 'NETATMO_CACHE_KEY' , NETATMO_CACHE_DEFAULT_KEY . '-' . @$_GET['scd'] . '-' . @$_GET['scm'] );
 
 
 /*

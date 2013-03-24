@@ -3,7 +3,7 @@
 Name: Netatmo PHP Widget
 URI: https://www.potsky.com/code/netatmo/
 Description: A PHP Widget to display weather information of several locations and Netatmo modules
-Version: 0.3.1
+Version: 0.3.2
 Date: 2013-03-10
 Author: potsky
 Author URI: http://www.potsky.com/about/
@@ -148,17 +148,23 @@ if ( is_array( $result ) ) {
 							echo sprintf( __('%s°C') , round( (float)$data['misc']['min_temp'] , 1 ) );
 						else
 							echo sprintf( __('%s°F') , round ( ( 9 / 5 ) * (int)$data['misc']['min_temp'] + 32 , 1) );
-						echo '<br/><span class="lt">';
-						if ($mm_display_when) echo sprintf( __('on %1$s %2$s at %5$s:%6$s'), 
-							utf8_encode( ucfirst( strftime( '%A' ,$data['misc']['date_min_temp'] ) ) ),
-							strftime( '%e' ,$data['misc']['date_min_temp'] ),
-							utf8_encode( ucfirst( strftime( '%B' ,$data['misc']['date_min_temp'] ) ) ),
-							strftime( '%Y' ,$data['misc']['date_min_temp'] ),
-							strftime( '%H' ,$data['misc']['date_min_temp'] ),
-							strftime( '%M' ,$data['misc']['date_min_temp'] )
-						);
-						echo '</span></td></tr>';
+						echo '</td></tr>';
 						$device_disp++;
+
+						if ($mm_display_when) {
+							echo '<tr><td class="mmd" colspan="2">';
+							echo sprintf( 
+								__('on %1$s %2$s at %5$s:%6$s'), 
+								utf8_encode( ucfirst( strftime( '%A' ,$data['misc']['date_min_temp'] ) ) ),
+								strftime( '%e' ,$data['misc']['date_min_temp'] ),
+								utf8_encode( ucfirst( strftime( '%B' ,$data['misc']['date_min_temp'] ) ) ),
+								strftime( '%Y' ,$data['misc']['date_min_temp'] ),
+								strftime( '%H' ,$data['misc']['date_min_temp'] ),
+								strftime( '%M' ,$data['misc']['date_min_temp'] )
+							);
+							echo '</td></tr>';
+							$device_disp++;
+						}
 						break;
 
 					case 'TemperatureMax' :
@@ -167,49 +173,64 @@ if ( is_array( $result ) ) {
 							echo sprintf( __('%s°C') , round( (float)$data['misc']['max_temp'] , 1 ) );
 						else
 							echo sprintf( __('%s°F') , round ( ( 9 / 5 ) * (int)$data['misc']['max_temp'] + 32 , 1) );
-						echo '<br/><span class="lt">';
-						if ($mm_display_when) echo sprintf( __('on %1$s %2$s at %5$s:%6$s'), 
-							utf8_encode( ucfirst( strftime( '%A' ,$data['misc']['date_max_temp'] ) ) ),
-							strftime( '%e' ,$data['misc']['date_max_temp'] ),
-							utf8_encode( ucfirst( strftime( '%B' ,$data['misc']['date_max_temp'] ) ) ),
-							strftime( '%Y' ,$data['misc']['date_max_temp'] ),
-							strftime( '%H' ,$data['misc']['date_max_temp'] ),
-							strftime( '%M' ,$data['misc']['date_max_temp'] )
-						);
-						echo '</span></td></tr>';
+						echo '</td></tr>';
 						$device_disp++;
+
+						if ($mm_display_when) {
+							echo '<tr><td class="mmd" colspan="2">';
+							echo sprintf( __('on %1$s %2$s at %5$s:%6$s'), 
+								utf8_encode( ucfirst( strftime( '%A' ,$data['misc']['date_max_temp'] ) ) ),
+								strftime( '%e' ,$data['misc']['date_max_temp'] ),
+								utf8_encode( ucfirst( strftime( '%B' ,$data['misc']['date_max_temp'] ) ) ),
+								strftime( '%Y' ,$data['misc']['date_max_temp'] ),
+								strftime( '%H' ,$data['misc']['date_max_temp'] ),
+								strftime( '%M' ,$data['misc']['date_max_temp'] )
+							);
+							echo '</td></tr>';
+							$device_disp++;
+						}
 						break;
 
 					case 'HumidityMin' :
 						echo '<tr><th valign="top">' . __('Humidity Min') . '</th><td valign="top" class="mm">';
 						echo sprintf( __('%s%%') , (int)$data['misc']['min_hum'] );
-						echo '<br/><span class="lt">';
-						if ($mm_display_when) echo sprintf( __('on %1$s %2$s at %5$s:%6$s'), 
-							utf8_encode( ucfirst( strftime( '%A' ,$data['misc']['date_min_hum'] ) ) ),
-							strftime( '%e' ,$data['misc']['date_min_hum'] ),
-							utf8_encode( ucfirst( strftime( '%B' ,$data['misc']['date_min_hum'] ) ) ),
-							strftime( '%Y' ,$data['misc']['date_min_hum'] ),
-							strftime( '%H' ,$data['misc']['date_min_hum'] ),
-							strftime( '%M' ,$data['misc']['date_min_hum'] )
-						);
-						echo '</span></td></tr>';
+						echo '</td></tr>';
 						$device_disp++;
+
+						if ($mm_display_when) {
+							echo '<tr><td class="mmd" colspan="2">';
+							echo sprintf( __('on %1$s %2$s at %5$s:%6$s'), 
+								utf8_encode( ucfirst( strftime( '%A' ,$data['misc']['date_min_hum'] ) ) ),
+								strftime( '%e' ,$data['misc']['date_min_hum'] ),
+								utf8_encode( ucfirst( strftime( '%B' ,$data['misc']['date_min_hum'] ) ) ),
+								strftime( '%Y' ,$data['misc']['date_min_hum'] ),
+								strftime( '%H' ,$data['misc']['date_min_hum'] ),
+								strftime( '%M' ,$data['misc']['date_min_hum'] )
+							);
+							echo '</td></tr>';
+							$device_disp++;
+						}
 						break;
 
 					case 'HumidityMax' :
 						echo '<tr><th valign="top">' . __('Humidity Max') . '</th><td valign="top" class="mm">';
 						echo sprintf( __('%s%%') , (int)$data['misc']['max_hum'] );
-						echo '<br/><span class="lt">';
-						if ($mm_display_when) echo sprintf( __('on %1$s %2$s at %5$s:%6$s'),
-							utf8_encode( ucfirst( strftime( '%A' ,$data['misc']['date_max_hum'] ) ) ),
-							strftime( '%e' ,$data['misc']['date_max_hum'] ),
-							utf8_encode( ucfirst( strftime( '%B' ,$data['misc']['date_max_hum'] ) ) ),
-							strftime( '%Y' ,$data['misc']['date_max_hum'] ),
-							strftime( '%H' ,$data['misc']['date_max_hum'] ),
-							strftime( '%M' ,$data['misc']['date_max_hum'] )
-						);
-						echo '</span></td></tr>';
+						echo '</td></tr>';
 						$device_disp++;
+
+						if ($mm_display_when) {
+							echo '<tr><td class="mmd" colspan="2">';
+								echo sprintf( __('on %1$s %2$s at %5$s:%6$s'),
+								utf8_encode( ucfirst( strftime( '%A' ,$data['misc']['date_max_hum'] ) ) ),
+								strftime( '%e' ,$data['misc']['date_max_hum'] ),
+								utf8_encode( ucfirst( strftime( '%B' ,$data['misc']['date_max_hum'] ) ) ),
+								strftime( '%Y' ,$data['misc']['date_max_hum'] ),
+								strftime( '%H' ,$data['misc']['date_max_hum'] ),
+								strftime( '%M' ,$data['misc']['date_max_hum'] )
+							);
+							echo '</td></tr>';
+							$device_disp++;
+						}
 						break;
 
 					case 'PressureMin' :
@@ -220,17 +241,22 @@ if ( is_array( $result ) ) {
 							echo sprintf( __('%sinHg') , round( (int)$data['misc']['min_pressure'] / 33.8638815 , 2 ) );
 						else
 							echo sprintf( __('%smmHg') , round( (int)$data['misc']['min_pressure'] * 0.750061 ) );
-						echo '<br/><span class="lt">';
-						if ($mm_display_when) echo sprintf( __('on %1$s %2$s at %5$s:%6$s'), 
-							utf8_encode( ucfirst( strftime( '%A' ,$data['misc']['date_min_pressure'] ) ) ),
-							strftime( '%e' ,$data['misc']['date_min_pressure'] ),
-							utf8_encode( ucfirst( strftime( '%B' ,$data['misc']['date_min_pressure'] ) ) ),
-							strftime( '%Y' ,$data['misc']['date_min_pressure'] ),
-							strftime( '%H' ,$data['misc']['date_min_pressure'] ),
-							strftime( '%M' ,$data['misc']['date_min_pressure'] )
-						);
-						echo '</span></td></tr>';
+						echo '</td></tr>';
 						$device_disp++;
+
+						if ($mm_display_when) {
+							echo '<tr><td class="mmd" colspan="2">';
+							echo sprintf( __('on %1$s %2$s at %5$s:%6$s'), 
+								utf8_encode( ucfirst( strftime( '%A' ,$data['misc']['date_min_pressure'] ) ) ),
+								strftime( '%e' ,$data['misc']['date_min_pressure'] ),
+								utf8_encode( ucfirst( strftime( '%B' ,$data['misc']['date_min_pressure'] ) ) ),
+								strftime( '%Y' ,$data['misc']['date_min_pressure'] ),
+								strftime( '%H' ,$data['misc']['date_min_pressure'] ),
+								strftime( '%M' ,$data['misc']['date_min_pressure'] )
+							);
+							echo '</td></tr>';
+							$device_disp++;
+						}
 						break;
 
 					case 'PressureMax' :
@@ -241,49 +267,64 @@ if ( is_array( $result ) ) {
 							echo sprintf( __('%sinHg') , round( (int)$data['misc']['max_pressure'] / 33.8638815 , 2 ) );
 						else
 							echo sprintf( __('%smmHg') , round( (int)$data['misc']['max_pressure'] * 0.750061 ) );
-						echo '<br/><span class="lt">';
-						if ($mm_display_when) echo sprintf( __('on %1$s %2$s at %5$s:%6$s'),
-							utf8_encode( ucfirst( strftime( '%A' ,$data['misc']['date_max_pressure'] ) ) ),
-							strftime( '%e' ,$data['misc']['date_max_pressure'] ),
-							utf8_encode( ucfirst( strftime( '%B' ,$data['misc']['date_max_pressure'] ) ) ),
-							strftime( '%Y' ,$data['misc']['date_max_pressure'] ),
-							strftime( '%H' ,$data['misc']['date_max_pressure'] ),
-							strftime( '%M' ,$data['misc']['date_max_pressure'] )
-						);
-						echo '</span></td></tr>';
+						echo '</td></tr>';
 						$device_disp++;
+
+						if ($mm_display_when) {
+							echo '<tr><td class="mmd" colspan="2">';
+								echo sprintf( __('on %1$s %2$s at %5$s:%6$s'),
+								utf8_encode( ucfirst( strftime( '%A' ,$data['misc']['date_max_pressure'] ) ) ),
+								strftime( '%e' ,$data['misc']['date_max_pressure'] ),
+								utf8_encode( ucfirst( strftime( '%B' ,$data['misc']['date_max_pressure'] ) ) ),
+								strftime( '%Y' ,$data['misc']['date_max_pressure'] ),
+								strftime( '%H' ,$data['misc']['date_max_pressure'] ),
+								strftime( '%M' ,$data['misc']['date_max_pressure'] )
+							);
+							echo '</td></tr>';
+							$device_disp++;
+						}
 						break;
 
 					case 'NoiseMin' :
 						echo '<tr><th valign="top">' . __('Noise Min') . '</th><td valign="top" class="mm">';
 						echo sprintf( __('%sdB') , round( (int)$data['misc']['min_noise'] , 1 ) );
-						echo '<br/><span class="lt">';
-						if ($mm_display_when) echo sprintf( __('on %1$s %2$s at %5$s:%6$s'), 
-							utf8_encode( ucfirst( strftime( '%A' ,$data['misc']['date_min_noise'] ) ) ),
-							strftime( '%e' ,$data['misc']['date_min_noise'] ),
-							utf8_encode( ucfirst( strftime( '%B' ,$data['misc']['date_min_noise'] ) ) ),
-							strftime( '%Y' ,$data['misc']['date_min_noise'] ),
-							strftime( '%H' ,$data['misc']['date_min_noise'] ),
-							strftime( '%M' ,$data['misc']['date_min_noise'] )
-						);
-						echo '</span></td></tr>';
+						echo '</td></tr>';
 						$device_disp++;
+
+						if ($mm_display_when) {
+							echo '<tr><td class="mmd" colspan="2">';
+							echo sprintf( __('on %1$s %2$s at %5$s:%6$s'), 
+								utf8_encode( ucfirst( strftime( '%A' ,$data['misc']['date_min_noise'] ) ) ),
+								strftime( '%e' ,$data['misc']['date_min_noise'] ),
+								utf8_encode( ucfirst( strftime( '%B' ,$data['misc']['date_min_noise'] ) ) ),
+								strftime( '%Y' ,$data['misc']['date_min_noise'] ),
+								strftime( '%H' ,$data['misc']['date_min_noise'] ),
+								strftime( '%M' ,$data['misc']['date_min_noise'] )
+							);
+							echo '</td></tr>';
+							$device_disp++;
+						}
 						break;
 
 					case 'NoiseMax' :
 						echo '<tr><th valign="top">' . __('Noise Max') . '</th><td valign="top" class="mm">';
 						echo sprintf( __('%sdB') , round( (int)$data['misc']['max_noise'] , 1 ) );
-						echo '<br/><span class="lt">';
-						if ($mm_display_when) echo sprintf( __('on %1$s %2$s at %5$s:%6$s'), 
-							utf8_encode( ucfirst( strftime( '%A' ,$data['misc']['date_max_noise'] ) ) ),
-							strftime( '%e' ,$data['misc']['date_max_noise'] ),
-							utf8_encode( ucfirst( strftime( '%B' ,$data['misc']['date_max_noise'] ) ) ),
-							strftime( '%Y' ,$data['misc']['date_max_noise'] ),
-							strftime( '%H' ,$data['misc']['date_max_noise'] ),
-							strftime( '%M' ,$data['misc']['date_max_noise'] )
-						);
-						echo '</span></td></tr>';
+						echo '</td></tr>';
 						$device_disp++;
+
+						if ($mm_display_when) {
+							echo '<tr><td class="mmd" colspan="2">';
+							echo sprintf( __('on %1$s %2$s at %5$s:%6$s'), 
+								utf8_encode( ucfirst( strftime( '%A' ,$data['misc']['date_max_noise'] ) ) ),
+								strftime( '%e' ,$data['misc']['date_max_noise'] ),
+								utf8_encode( ucfirst( strftime( '%B' ,$data['misc']['date_max_noise'] ) ) ),
+								strftime( '%Y' ,$data['misc']['date_max_noise'] ),
+								strftime( '%H' ,$data['misc']['date_max_noise'] ),
+								strftime( '%M' ,$data['misc']['date_max_noise'] )
+							);
+							echo '</td></tr>';
+							$device_disp++;
+						}
 						break;
 
 					default:
@@ -338,17 +379,22 @@ if ( is_array( $result ) ) {
 								echo sprintf( __('%s°C') , round( (float)$datam['misc']['min_temp'] , 1 ) );
 							else
 								echo sprintf( __('%s°F') , round ( ( 9 / 5 ) * (int)$datam['misc']['min_temp'] + 32 , 1) );
-							echo '<br/><span class="lt">';
-							if ($mm_display_when) echo sprintf( __('on %1$s %2$s at %5$s:%6$s'), 
-								utf8_encode( ucfirst( strftime( '%A' ,$datam['misc']['date_min_temp'] ) ) ),
-								strftime( '%e' ,$datam['misc']['date_min_temp'] ),
-								utf8_encode( ucfirst( strftime( '%B' ,$datam['misc']['date_min_temp'] ) ) ),
-								strftime( '%Y' ,$datam['misc']['date_min_temp'] ),
-								strftime( '%H' ,$datam['misc']['date_min_temp'] ),
-								strftime( '%M' ,$datam['misc']['date_min_temp'] )
-							);
-							echo '</span></td></tr>';
+							echo '</td></tr>';
 							$device_disp--;
+
+							if ($mm_display_when) {
+								echo '<tr><td class="mmd" colspan="2">';
+								echo sprintf( __('on %1$s %2$s at %5$s:%6$s'), 
+									utf8_encode( ucfirst( strftime( '%A' ,$datam['misc']['date_min_temp'] ) ) ),
+									strftime( '%e' ,$datam['misc']['date_min_temp'] ),
+									utf8_encode( ucfirst( strftime( '%B' ,$datam['misc']['date_min_temp'] ) ) ),
+									strftime( '%Y' ,$datam['misc']['date_min_temp'] ),
+									strftime( '%H' ,$datam['misc']['date_min_temp'] ),
+									strftime( '%M' ,$datam['misc']['date_min_temp'] )
+								);
+								echo '</td></tr>';
+								$device_disp--;
+							}
 							break;
 
 						case 'TemperatureMax' :
@@ -357,52 +403,65 @@ if ( is_array( $result ) ) {
 								echo sprintf( __('%s°C') , round( (float)$datam['misc']['max_temp'] , 1 ) );
 							else
 								echo sprintf( __('%s°F') , round ( ( 9 / 5 ) * (int)$datam['misc']['max_temp'] + 32 , 1) );
-							echo '<br/><span class="lt">';
-							if ($mm_display_when) echo sprintf( __('on %1$s %2$s at %5$s:%6$s'), 
-								utf8_encode( ucfirst( strftime( '%A' ,$datam['misc']['date_max_temp'] ) ) ),
-								strftime( '%e' ,$datam['misc']['date_max_temp'] ),
-								utf8_encode( ucfirst( strftime( '%B' ,$datam['misc']['date_max_temp'] ) ) ),
-								strftime( '%Y' ,$datam['misc']['date_max_temp'] ),
-								strftime( '%H' ,$datam['misc']['date_max_temp'] ),
-								strftime( '%M' ,$datam['misc']['date_max_temp'] )
-							);
-							echo '</span></td></tr>';
+							echo '</td></tr>';
 							$device_disp--;
+
+							if ($mm_display_when) {
+								echo '<tr><td class="mmd" colspan="2">';
+								echo sprintf( __('on %1$s %2$s at %5$s:%6$s'), 
+									utf8_encode( ucfirst( strftime( '%A' ,$datam['misc']['date_max_temp'] ) ) ),
+									strftime( '%e' ,$datam['misc']['date_max_temp'] ),
+									utf8_encode( ucfirst( strftime( '%B' ,$datam['misc']['date_max_temp'] ) ) ),
+									strftime( '%Y' ,$datam['misc']['date_max_temp'] ),
+									strftime( '%H' ,$datam['misc']['date_max_temp'] ),
+									strftime( '%M' ,$datam['misc']['date_max_temp'] )
+								);
+								echo '</td></tr>';
+								$device_disp--;
+							}
 							break;
 
 						case 'HumidityMin' :
 							echo '<tr><th valign="top">' . __('Humidity Min') . '</th><td valign="top" class="mm">';
 							echo sprintf( __('%s%%') , (int)$datam['misc']['min_hum'] );
-							echo '<br/><span class="lt">';
-							if ($mm_display_when) echo sprintf( __('on %1$s %2$s at %5$s:%6$s'), 
-								utf8_encode( ucfirst( strftime( '%A' ,$datam['misc']['date_min_hum'] ) ) ),
-								strftime( '%e' ,$datam['misc']['date_min_hum'] ),
-								utf8_encode( ucfirst( strftime( '%B' ,$datam['misc']['date_min_hum'] ) ) ),
-								strftime( '%Y' ,$datam['misc']['date_min_hum'] ),
-								strftime( '%H' ,$datam['misc']['date_min_hum'] ),
-								strftime( '%M' ,$datam['misc']['date_min_hum'] )
-							);
-							echo '</span></td></tr>';
+							echo '</td></tr>';
 							$device_disp--;
+
+							if ($mm_display_when) {
+								echo '<tr><td class="mmd" colspan="2">';
+								echo sprintf( __('on %1$s %2$s at %5$s:%6$s'), 
+									utf8_encode( ucfirst( strftime( '%A' ,$datam['misc']['date_min_hum'] ) ) ),
+									strftime( '%e' ,$datam['misc']['date_min_hum'] ),
+									utf8_encode( ucfirst( strftime( '%B' ,$datam['misc']['date_min_hum'] ) ) ),
+									strftime( '%Y' ,$datam['misc']['date_min_hum'] ),
+									strftime( '%H' ,$datam['misc']['date_min_hum'] ),
+									strftime( '%M' ,$datam['misc']['date_min_hum'] )
+								);
+								echo '</td></tr>';
+								$device_disp--;
+							}
 							break;
 
 						case 'HumidityMax' :
 							echo '<tr><th valign="top">' . __('Humidity Max') . '</th><td valign="top" class="mm">';
 							echo sprintf( __('%s%%') , (int)$datam['misc']['max_hum'] );
-							echo '<br/><span class="lt">';
-							if ($mm_display_when) echo sprintf( __('on %1$s %2$s at %5$s:%6$s'),
-								utf8_encode( ucfirst( strftime( '%A' ,$datam['misc']['date_max_hum'] ) ) ),
-								strftime( '%e' ,$datam['misc']['date_max_hum'] ),
-								utf8_encode( ucfirst( strftime( '%B' ,$datam['misc']['date_max_hum'] ) ) ),
-								strftime( '%Y' ,$datam['misc']['date_max_hum'] ),
-								strftime( '%H' ,$datam['misc']['date_max_hum'] ),
-								strftime( '%M' ,$datam['misc']['date_max_hum'] )
-							);
-							echo '</span></td></tr>';
+							echo '</td></tr>';
 							$device_disp--;
+
+							if ($mm_display_when) {
+								echo '<tr><td class="mmd" colspan="2">';
+								echo sprintf( __('on %1$s %2$s at %5$s:%6$s'),
+									utf8_encode( ucfirst( strftime( '%A' ,$datam['misc']['date_max_hum'] ) ) ),
+									strftime( '%e' ,$datam['misc']['date_max_hum'] ),
+									utf8_encode( ucfirst( strftime( '%B' ,$datam['misc']['date_max_hum'] ) ) ),
+									strftime( '%Y' ,$datam['misc']['date_max_hum'] ),
+									strftime( '%H' ,$datam['misc']['date_max_hum'] ),
+									strftime( '%M' ,$datam['misc']['date_max_hum'] )
+								);
+								echo '</td></tr>';
+								$device_disp--;
+							}
 							break;
-
-
 
 						default:
 							break;

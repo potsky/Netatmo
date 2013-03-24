@@ -81,7 +81,7 @@ define( 'NETATMO_MODULE_DEFAULT_VALUES' , 'Humidity' );
  * Internal
  * No need to change this
  */
-define( 'NETATMO_WIDGET_VERSION'        , '0.3.1' );
+define( 'NETATMO_WIDGET_VERSION'        , '0.3.2' );
 
 define( 'NETATMO_DEVICE_SCALES'         , '1day,1week,1month' );
 define( 'NETATMO_DEVICE_TYPE_MAIN'      , 'Temperature,Co2,Humidity,Noise,Pressure' );

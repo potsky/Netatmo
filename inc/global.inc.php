@@ -66,13 +66,15 @@ $locale      = strtolower($a).'_'.strtoupper($b);
 
 putenv( 'LC_ALL=' . $locale );
 putenv( 'LANGUAGE=' . $locale );
-setlocale( LC_ALL , $locale );
+if ( $a == 'fr' )
+	setlocale( LC_ALL , $locale , $locale . '.utf8' , 'fra' );
+else if ( $a == 'de' )
+	setlocale( LC_ALL , $locale , $locale . '.utf8' , 'deu_deu' , 'de' , 'ge' );
+else
+	setlocale( LC_ALL , $locale , $locale . '.utf8' );
 bindtextdomain( 'messages' , './lang' );
 bind_textdomain_codeset( 'messages' , 'UTF-8' );
 textdomain( 'messages' );
-
-
-
 
 
 /*

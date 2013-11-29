@@ -10,8 +10,10 @@ define('NOT_LOGGED_ERROR_TYPE', 4); //unable to get access token
 
 define('BACKEND_BASE_URI', "http://api.netatmo.net/");
 define('BACKEND_SERVICES_URI', "http://api.netatmo.net/api");
-define('BACKEND_ACCESS_TOKEN_URI', "https://api.netatmo.net/oauth2/token");
-define('BACKEND_AUTHORIZE_URI', "https://api.netatmo.net/oauth2/authorize");
+#define('BACKEND_ACCESS_TOKEN_URI', "https://api.netatmo.net/oauth2/token");
+#define('BACKEND_AUTHORIZE_URI', "https://api.netatmo.net/oauth2/authorize");
+define('BACKEND_ACCESS_TOKEN_URI', "http://api.netatmo.net/oauth2/token");
+define('BACKEND_AUTHORIZE_URI', "http://api.netatmo.net/oauth2/authorize");
 
 /**
  * OAuth2.0 Netatmo exception handling

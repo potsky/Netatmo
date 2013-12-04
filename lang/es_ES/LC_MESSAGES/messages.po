@@ -1,0 +1,144 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Netatmo Widget\n"
+"POT-Creation-Date: 2013-12-04 09:17+0100\n"
+"PO-Revision-Date: 2013-12-04 09:19+0100\n"
+"Last-Translator: potsky <potsky@me.com>\n"
+"Language-Team: potsky <potsky@me.com>\n"
+"Language: es\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.6\n"
+"X-Poedit-KeywordsList: gettext;gettext_noop;_x;_e;__;esc_attr__;esc_attr_e;"
+"esc_html__;esc_html_e;_ex;esc_attr_x;esc_html_x;_n;_nx;_n_noop;_nx_noop\n"
+"X-Poedit-Basepath: ../../../\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-SearchPath-0: .\n"
+
+#: index.php:45
+#, php-format
+msgid "%1$s %2$s %3$s %4$s at %5$s:%6$s"
+msgstr "%1$s %2$s %3$s %4$s en %5$s:%6$s"
+
+#: index.php:70 index.php:344
+#, php-format
+msgid "measured %1$s %2$s at %5$s:%6$s"
+msgstr "medido %1$s %2$s en %5$s:%6$s"
+
+#: index.php:88 index.php:148 index.php:173 index.php:357 index.php:379
+#: index.php:403
+#, php-format
+msgid "%s°C"
+msgstr "%s°C"
+
+#: index.php:90 index.php:150 index.php:175 index.php:359 index.php:381
+#: index.php:405
+#, php-format
+msgid "%s°F"
+msgstr "%s°F"
+
+#: index.php:111 index.php:371
+msgid "Humidity"
+msgstr "Humedad"
+
+#: index.php:112 index.php:196 index.php:217 index.php:372 index.php:426
+#: index.php:447
+#, php-format
+msgid "%s%%"
+msgstr "%s%%"
+
+#: index.php:118
+msgid "CO2"
+msgstr "CO2"
+
+#: index.php:119
+#, php-format
+msgid "%sppm"
+msgstr "%sppm"
+
+#: index.php:125
+msgid "Noise"
+msgstr "Ruido"
+
+#: index.php:126 index.php:290 index.php:311
+#, php-format
+msgid "%sdB"
+msgstr "%sdB"
+
+#: index.php:132
+msgid "Pressure"
+msgstr "Presión"
+
+#: index.php:135 index.php:239 index.php:265
+#, php-format
+msgid "%smbar"
+msgstr "%smbar"
+
+#: index.php:137 index.php:241 index.php:267
+#, php-format
+msgid "%sinHg"
+msgstr "%sinHg"
+
+#: index.php:139 index.php:243 index.php:269
+#, php-format
+msgid "%smmHg"
+msgstr "%smmHg"
+
+#: index.php:146 index.php:377
+msgid "Temp Min"
+msgstr "Temp Mín"
+
+#: index.php:157 index.php:181 index.php:202 index.php:223 index.php:249
+#: index.php:275 index.php:296 index.php:317 index.php:387 index.php:411
+#: index.php:432 index.php:453
+#, php-format
+msgid "on %1$s %2$s at %5$s:%6$s"
+msgstr "de %1$s %2$s en %5$s:%6$s"
+
+#: index.php:171 index.php:401
+msgid "Temp Max"
+msgstr "Temp Máx"
+
+#: index.php:195 index.php:425
+msgid "Humidity Min"
+msgstr "Mín Humedad"
+
+#: index.php:216 index.php:446
+msgid "Humidity Max"
+msgstr "Máx Humedad"
+
+#: index.php:237
+msgid "Pressure Min"
+msgstr "Mín Presión"
+
+#: index.php:263
+msgid "Pressure Max"
+msgstr "Máx Presión"
+
+#: index.php:289
+msgid "Noise Min"
+msgstr "Mín Ruido"
+
+#: index.php:310
+msgid "Noise Max"
+msgstr "Máx Ruido"
+
+#: index.php:485
+msgid "Netatmo problem"
+msgstr "Problema Netatmo"
+
+#: index.php:486
+msgid "No device"
+msgstr "No hay dispositivo"
+
+#: index.php:494
+msgid "Netatmo unreachable"
+msgstr "Netatmo no disponible"
+
+#: inc/global.inc.php:93
+msgid "API format error"
+msgstr "Error del formato de API"
+
+#~ msgid "Hello"
+#~ msgstr "Bonjour"

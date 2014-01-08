@@ -43,7 +43,7 @@ if ( is_array( $result ) ) {
 		foreach ( $result as $data ) {
 
 			// array 'data' is now just the subpart of the array 'result' for the first device, and the next time for the second, etc... until there is no more device to parse
-			$name = $data['station'];
+			$device_name = $data['station'];
 
 			// get all external modules for the current device
 			foreach ( $data['m'] as $moduleid => $datam ) {
@@ -65,7 +65,7 @@ if ( is_array( $result ) ) {
 
 				// Display the text that you want
 				// \n at the end puts a new line at the end of this one
-				echo "In external module '${name}', on ${human_date} at ${human_hour}, temperature is ${temp}°C and humidity is ${humi}%\n";
+				echo "In external module '${device_name}:${name}', on ${human_date} at ${human_hour}, temperature is ${temp}°C and humidity is ${humi}%\n";
 
 				// Stop the script here to avoid looping to the next devices and the next external modules (foreach loops)
 				die();

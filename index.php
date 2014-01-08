@@ -3,12 +3,12 @@
 Name: Netatmo PHP Widget
 URI: https://www.potsky.com/code/netatmo/
 Description: A PHP Widget to display weather information of several locations and Netatmo modules
-Version: 0.3.2
-Date: 2013-03-10
+Version: 0.3.3
+Date: 2014-01-08
 Author: potsky
 Author URI: http://www.potsky.com/about/
 
-Copyright © 2012 Raphael Barbate ( potsky ) <potsky@me.com> [http://www.potsky.com]
+Copyright © 2014 Raphael Barbate ( potsky ) <potsky@me.com> [http://www.potsky.com]
 This file is part of Netatmo PHP Widget.
 
 Netatmo PHP Widget is free software: you can redistribute it and/or modify
@@ -42,7 +42,7 @@ require_once( 'inc' . DIRECTORY_SEPARATOR . 'global.inc.php' );
 <center>
 <div id="container">
 <?php
-$when = sprintf( __('%1$s %2$s %3$s %4$s at %5$s:%6$s'), 
+$when = sprintf( __('%1$s %2$s %3$s %4$s at %5$s:%6$s'),
 	utf8_encode( ucfirst( strftime( '%A' ) ) ),
 	strftime( '%e' ),
 	utf8_encode( ucfirst( strftime( '%B' ) ) ),
@@ -63,11 +63,11 @@ if ( is_array( $result ) ) {
 			$name = $data['station'];
 
 			if ( isset( $_GET['n'] ) )
-				if ( strtolower( $name ) != strtolower( $_GET['n'] ) ) 
+				if ( strtolower( $name ) != strtolower( $_GET['n'] ) )
 					continue;
 
 			$tempc = (float) $data['results']['Temperature'];
-			$when  = sprintf( __('measured %1$s %2$s at %5$s:%6$s'), 
+			$when  = sprintf( __('measured %1$s %2$s at %5$s:%6$s'),
 				utf8_encode( ucfirst( strftime( '%A' ,$data['time'] ) ) ),
 				strftime( '%e' ,$data['time'] ),
 				utf8_encode( ucfirst( strftime( '%B' ,$data['time'] ) ) ),
@@ -153,8 +153,8 @@ if ( is_array( $result ) ) {
 
 						if ($mm_display_when) {
 							echo '<tr><td class="mmd" colspan="2">';
-							echo sprintf( 
-								__('on %1$s %2$s at %5$s:%6$s'), 
+							echo sprintf(
+								__('on %1$s %2$s at %5$s:%6$s'),
 								utf8_encode( ucfirst( strftime( '%A' ,$data['misc']['date_min_temp'] ) ) ),
 								strftime( '%e' ,$data['misc']['date_min_temp'] ),
 								utf8_encode( ucfirst( strftime( '%B' ,$data['misc']['date_min_temp'] ) ) ),
@@ -178,7 +178,7 @@ if ( is_array( $result ) ) {
 
 						if ($mm_display_when) {
 							echo '<tr><td class="mmd" colspan="2">';
-							echo sprintf( __('on %1$s %2$s at %5$s:%6$s'), 
+							echo sprintf( __('on %1$s %2$s at %5$s:%6$s'),
 								utf8_encode( ucfirst( strftime( '%A' ,$data['misc']['date_max_temp'] ) ) ),
 								strftime( '%e' ,$data['misc']['date_max_temp'] ),
 								utf8_encode( ucfirst( strftime( '%B' ,$data['misc']['date_max_temp'] ) ) ),
@@ -199,7 +199,7 @@ if ( is_array( $result ) ) {
 
 						if ($mm_display_when) {
 							echo '<tr><td class="mmd" colspan="2">';
-							echo sprintf( __('on %1$s %2$s at %5$s:%6$s'), 
+							echo sprintf( __('on %1$s %2$s at %5$s:%6$s'),
 								utf8_encode( ucfirst( strftime( '%A' ,$data['misc']['date_min_hum'] ) ) ),
 								strftime( '%e' ,$data['misc']['date_min_hum'] ),
 								utf8_encode( ucfirst( strftime( '%B' ,$data['misc']['date_min_hum'] ) ) ),
@@ -246,7 +246,7 @@ if ( is_array( $result ) ) {
 
 						if ($mm_display_when) {
 							echo '<tr><td class="mmd" colspan="2">';
-							echo sprintf( __('on %1$s %2$s at %5$s:%6$s'), 
+							echo sprintf( __('on %1$s %2$s at %5$s:%6$s'),
 								utf8_encode( ucfirst( strftime( '%A' ,$data['misc']['date_min_pressure'] ) ) ),
 								strftime( '%e' ,$data['misc']['date_min_pressure'] ),
 								utf8_encode( ucfirst( strftime( '%B' ,$data['misc']['date_min_pressure'] ) ) ),
@@ -293,7 +293,7 @@ if ( is_array( $result ) ) {
 
 						if ($mm_display_when) {
 							echo '<tr><td class="mmd" colspan="2">';
-							echo sprintf( __('on %1$s %2$s at %5$s:%6$s'), 
+							echo sprintf( __('on %1$s %2$s at %5$s:%6$s'),
 								utf8_encode( ucfirst( strftime( '%A' ,$data['misc']['date_min_noise'] ) ) ),
 								strftime( '%e' ,$data['misc']['date_min_noise'] ),
 								utf8_encode( ucfirst( strftime( '%B' ,$data['misc']['date_min_noise'] ) ) ),
@@ -314,7 +314,7 @@ if ( is_array( $result ) ) {
 
 						if ($mm_display_when) {
 							echo '<tr><td class="mmd" colspan="2">';
-							echo sprintf( __('on %1$s %2$s at %5$s:%6$s'), 
+							echo sprintf( __('on %1$s %2$s at %5$s:%6$s'),
 								utf8_encode( ucfirst( strftime( '%A' ,$data['misc']['date_max_noise'] ) ) ),
 								strftime( '%e' ,$data['misc']['date_max_noise'] ),
 								utf8_encode( ucfirst( strftime( '%B' ,$data['misc']['date_max_noise'] ) ) ),
@@ -341,7 +341,7 @@ if ( is_array( $result ) ) {
 				echo '<td id="outside' . $moduleid . '" class="outside" valign="top" align="right">';
 
 				$tempc = (float) $datam['results']['Temperature'];
-				$when  = sprintf( __('measured %1$s %2$s at %5$s:%6$s'), 
+				$when  = sprintf( __('measured %1$s %2$s at %5$s:%6$s'),
 					utf8_encode( ucfirst( strftime( '%A' ,$datam['time'] ) ) ),
 					strftime( '%e' ,$datam['time'] ),
 					utf8_encode( ucfirst( strftime( '%B' ,$datam['time'] ) ) ),
@@ -384,7 +384,7 @@ if ( is_array( $result ) ) {
 
 							if ($mm_display_when) {
 								echo '<tr><td class="mmd" colspan="2">';
-								echo sprintf( __('on %1$s %2$s at %5$s:%6$s'), 
+								echo sprintf( __('on %1$s %2$s at %5$s:%6$s'),
 									utf8_encode( ucfirst( strftime( '%A' ,$datam['misc']['date_min_temp'] ) ) ),
 									strftime( '%e' ,$datam['misc']['date_min_temp'] ),
 									utf8_encode( ucfirst( strftime( '%B' ,$datam['misc']['date_min_temp'] ) ) ),
@@ -408,7 +408,7 @@ if ( is_array( $result ) ) {
 
 							if ($mm_display_when) {
 								echo '<tr><td class="mmd" colspan="2">';
-								echo sprintf( __('on %1$s %2$s at %5$s:%6$s'), 
+								echo sprintf( __('on %1$s %2$s at %5$s:%6$s'),
 									utf8_encode( ucfirst( strftime( '%A' ,$datam['misc']['date_max_temp'] ) ) ),
 									strftime( '%e' ,$datam['misc']['date_max_temp'] ),
 									utf8_encode( ucfirst( strftime( '%B' ,$datam['misc']['date_max_temp'] ) ) ),
@@ -429,7 +429,7 @@ if ( is_array( $result ) ) {
 
 							if ($mm_display_when) {
 								echo '<tr><td class="mmd" colspan="2">';
-								echo sprintf( __('on %1$s %2$s at %5$s:%6$s'), 
+								echo sprintf( __('on %1$s %2$s at %5$s:%6$s'),
 									utf8_encode( ucfirst( strftime( '%A' ,$datam['misc']['date_min_hum'] ) ) ),
 									strftime( '%e' ,$datam['misc']['date_min_hum'] ),
 									utf8_encode( ucfirst( strftime( '%B' ,$datam['misc']['date_min_hum'] ) ) ),

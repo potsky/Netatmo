@@ -1,6 +1,11 @@
 <?php
-require_once( dirname(__FILE__) . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . 'config.inc.php' );
-@require_once( dirname(__FILE__) . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . 'config.user.inc.php' );
+$userfile = dirname(__FILE__) . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . 'config.user.inc.php';
+if ( file_exists( $userfile ) ) {
+	require_once( $userfile );
+}
+else {
+	require_once( dirname(__FILE__) . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . 'config.inc.php' );
+}
 require_once( dirname(__FILE__) . DIRECTORY_SEPARATOR . 'functions.inc.php' );
 require_once( dirname(__FILE__) . DIRECTORY_SEPARATOR . 'Netatmo' . DIRECTORY_SEPARATOR . 'NAApiClient.php' );
 

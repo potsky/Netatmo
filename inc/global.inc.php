@@ -70,18 +70,24 @@ $locale      = str_replace('-','_',$locale);
 @list($a,$b) = explode('_',$locale);
 $locale      = strtolower($a).'_'.strtoupper($b);
 
-putenv( 'LC_ALL=' . $locale );
-putenv( 'LANGUAGE=' . $locale );
-if ( $a == 'fr' )
-	setlocale( LC_ALL , $locale , $locale . '.utf8' , 'fra' );
-else if ( $a == 'de' )
-	setlocale( LC_ALL , $locale , $locale . '.utf8' , 'deu_deu' , 'de' , 'ge' );
-else
-	setlocale( LC_ALL , $locale , $locale . '.utf8' );
-bindtextdomain( 'messages' , './lang' );
-bind_textdomain_codeset( 'messages' , 'UTF-8' );
-textdomain( 'messages' );
-
+if ( function_exists('bindtextdomain')) {
+	putenv( 'LC_ALL=' . $locale );
+	putenv( 'LANGUAGE=' . $locale );
+	if ( $a == 'fr' )
+		setlocale( LC_ALL , $locale , $locale . '.utf8' , 'fra' );
+	else if ( $a == 'de' )
+		setlocale( LC_ALL , $locale , $locale . '.utf8' , 'deu_deu' , 'de' , 'ge' );
+	else
+		setlocale( LC_ALL , $locale , $locale . '.utf8' );
+	bindtextdomain( 'messages' , './lang' );
+	bind_textdomain_codeset( 'messages' , 'UTF-8' );
+	textdomain( 'messages' );
+}
+else {
+	function gettext($t) {
+		return $t;
+	}
+}
 
 /*
  * Query Netatmo API and retrieve user informations

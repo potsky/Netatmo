@@ -60,7 +60,8 @@ if ( is_array( $result ) ) {
 
 		foreach ( $result as $data ) {
 
-			$name = $data['station'];
+			$name   = $data['station'];
+			$blocks = 1 + count($data['m']);
 
 			if ( isset( $_GET['n'] ) )
 				if ( strtolower( $name ) != strtolower( $_GET['n'] ) )
@@ -77,7 +78,7 @@ if ( is_array( $result ) ) {
 			);
 
 			echo '<table>';
-			echo '<tr><td colspan="2" id="title" align="center">' . $name . '</td></tr>';
+			echo '<tr><td colspan="' . $blocks . '" id="title" align="center">' . $name . '</td></tr>';
 			echo '<tr>';
 			echo '	<td id="inside" valign="top" align="left">';
 			echo '		<table>';
@@ -360,7 +361,8 @@ if ( is_array( $result ) ) {
 				echo '</th>';
 				echo '<td align="right"><img src="img/outside.png" style="margin-right:1px;"/></td></tr>';
 
-				$module_order = ( isset( $_GET['mo'] ) ) ? $_GET['mo'] : NETATMO_MODULE_DEFAULT_VALUES;
+				$module_order     = ( isset( $_GET['mo'] ) ) ? $_GET['mo'] : NETATMO_MODULE_DEFAULT_VALUES;
+				$this_device_disp = $device_disp;
 
 				foreach ( explode( ',' , $module_order ) as $t) {
 
@@ -370,7 +372,7 @@ if ( is_array( $result ) ) {
 						case 'Humidity':
 							echo '<tr><th>' . __('Humidity') .'</th>';
 							echo '<td>' . sprintf( __('%s%%') , $datam['results']['Humidity'] ) . '</td></tr>';
-							$device_disp--;
+							$this_device_disp--;
 							break;
 
 						case 'TemperatureMin' :
@@ -380,7 +382,7 @@ if ( is_array( $result ) ) {
 							else
 								echo sprintf( __('%s°F') , round ( ( 9 / 5 ) * (int)$datam['misc']['min_temp'] + 32 , 1) );
 							echo '</td></tr>';
-							$device_disp--;
+							$this_device_disp--;
 
 							if ($mm_display_when) {
 								echo '<tr><td class="mmd" colspan="2">';
@@ -393,7 +395,7 @@ if ( is_array( $result ) ) {
 									strftime( '%M' ,$datam['misc']['date_min_temp'] )
 								);
 								echo '</td></tr>';
-								$device_disp--;
+								$this_device_disp--;
 							}
 							break;
 
@@ -404,7 +406,7 @@ if ( is_array( $result ) ) {
 							else
 								echo sprintf( __('%s°F') , round ( ( 9 / 5 ) * (int)$datam['misc']['max_temp'] + 32 , 1) );
 							echo '</td></tr>';
-							$device_disp--;
+							$this_device_disp--;
 
 							if ($mm_display_when) {
 								echo '<tr><td class="mmd" colspan="2">';
@@ -417,7 +419,7 @@ if ( is_array( $result ) ) {
 									strftime( '%M' ,$datam['misc']['date_max_temp'] )
 								);
 								echo '</td></tr>';
-								$device_disp--;
+								$this_device_disp--;
 							}
 							break;
 
@@ -425,7 +427,7 @@ if ( is_array( $result ) ) {
 							echo '<tr><th valign="top">' . __('Humidity Min') . '</th><td valign="top" class="mm">';
 							echo sprintf( __('%s%%') , (int)$datam['misc']['min_hum'] );
 							echo '</td></tr>';
-							$device_disp--;
+							$this_device_disp--;
 
 							if ($mm_display_when) {
 								echo '<tr><td class="mmd" colspan="2">';
@@ -438,7 +440,7 @@ if ( is_array( $result ) ) {
 									strftime( '%M' ,$datam['misc']['date_min_hum'] )
 								);
 								echo '</td></tr>';
-								$device_disp--;
+								$this_device_disp--;
 							}
 							break;
 
@@ -446,7 +448,7 @@ if ( is_array( $result ) ) {
 							echo '<tr><th valign="top">' . __('Humidity Max') . '</th><td valign="top" class="mm">';
 							echo sprintf( __('%s%%') , (int)$datam['misc']['max_hum'] );
 							echo '</td></tr>';
-							$device_disp--;
+							$this_device_disp--;
 
 							if ($mm_display_when) {
 								echo '<tr><td class="mmd" colspan="2">';
@@ -459,7 +461,7 @@ if ( is_array( $result ) ) {
 									strftime( '%M' ,$datam['misc']['date_max_hum'] )
 								);
 								echo '</td></tr>';
-								$device_disp--;
+								$this_device_disp--;
 							}
 							break;
 
@@ -468,8 +470,9 @@ if ( is_array( $result ) ) {
 					}
 				}
 
-				for ($i=0; $i<$device_disp; $i++)
+				for ($i=0; $i<$this_device_disp; $i++) {
 					echo '<tr><th></th><td></td></tr>';
+				}
 
 				echo '<tr><td colspan="2" class="da">' . $when . '</td></tr>';
 

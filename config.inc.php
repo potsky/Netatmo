@@ -1,14 +1,20 @@
 <?php
 /*
+All commented parameters should be set in the config.user.inc.php file.
+Create a config.user.inc.php file just here in the root directory and put your custom settings.
+This file is in the .gitignore file so it will not be removed when pulling new versions from GitHub.
+ */
+
+/*
  * Default account parameters
  * client_id ans client_secret have to be created at http://dev.netatmo.com/dev/createapp
  */
-$NAusername = "____EMAIL_ACCOUNT_HERE____";
-$NApwd      = "____PASS_ACCOUNT_HERE____";
-$NAconfig   = array(
-    'client_id'     => '____API_CLIENT_ID_HERE____',
-    'client_secret' => '____API_CLIENT_SECRET_HERE____',
-);
+//$NAusername = "____EMAIL_ACCOUNT_HERE____";
+//$NApwd      = "____PASS_ACCOUNT_HERE____";
+//$NAconfig   = array(
+//    'client_id'     => '____API_CLIENT_ID_HERE____',
+//    'client_secret' => '____API_CLIENT_SECRET_HERE____',
+//);
 
 
 /*
@@ -73,16 +79,21 @@ $NAconfig   = array(
 /*
  * You can change this
  */
-define( 'NETATMO_DEVICE_DEFAULT_VALUES' , 'Humidity,CO2,Noise' );
-define( 'NETATMO_MODULE_DEFAULT_VALUES' , 'Humidity' );
+//define( 'NETATMO_DEVICE_DEFAULT_VALUES' , 'Humidity,CO2,Noise' );
+//define( 'NETATMO_MODULE_DEFAULT_VALUES' , 'Humidity' );
 
 
-/*
+
+
+
+
+
+/***************************************************************************
  * Internal
  * No need to change this
- */
-define( 'NETATMO_WIDGET_VERSION'        , '0.3.3' );
-
+ * Do not copy this in your config.user.inc.php file
+ **************************************************************************/
+define( 'NETATMO_WIDGET_VERSION'        , '0.4' );
 define( 'NETATMO_DEVICE_SCALES'         , '1day,1week,1month' );
 define( 'NETATMO_DEVICE_TYPE_MAIN'      , 'Temperature,Co2,Humidity,Noise,Pressure' );
 define( 'NETATMO_DEVICE_TYPE_MISC'      , 'min_temp,date_min_temp,max_temp,date_max_temp,min_hum,date_min_hum,max_hum,date_max_hum,min_pressure,date_min_pressure,max_pressure,date_max_pressure,min_noise,date_min_noise,max_noise,date_max_noise' );

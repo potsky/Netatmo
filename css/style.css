@@ -1,74 +1,113 @@
+/*
+You can overwrite some values in your user stylesheet.
+You have to create a style.user.css file in this directory and write what you want, it will be loaded after this one.
+The file style.user.css is in the .gitignore file so it will never be deleted or removeed when pulling new versions from GitHub
+*/
+
 body {
-	background-color: #fff;
-	padding: 10px;
-	color: #333;
-	font-family: Arial;
-	font-size: 27px;
-	overflow: hidden;
-	overflow-x: hidden;
-	overflow-y: hidden;
+	background-color : #fff;
+	padding          : 10px;
+	color            : #333;
+	font-family      : Arial;
+	font-size        : 27px;
+	overflow         : hidden;
+	overflow-x       : hidden;
+	overflow-y       : hidden;
 }
+
 #container {
 }
+
 table {
-	background:#fff;
-	border-collapse: collapse;
-	border: 1px solid #ddd;
-	margin: 0;
-	padding: 0;
+	background      : #fff;
+	border-collapse : collapse;
+	border          : 1px solid #ddd;
+	margin          : 0;
+	padding         : 0;
 }
-td#title {
-	border: 1px solid #ddd;
-	height:20px;
-	text-align: center;
+
+#title {
+	border     : 1px solid #ddd;
+	height     : 20px;
+	text-align : center;
 }
-td#inside, td.outside {
-	border: 1px solid #ddd;
+
+#inside, td.outside {
+	border : 1px solid #ddd;
 }
-td#inside table, td.outside table {
-	border-collapse: collapse;
-	border: 0;
-	width: 260px;
+
+#inside table, td.outside table {
+	border-collapse : collapse;
+	border          : 0;
+	width           : 260px;
 }
+
+.insideimage {
+	background-image        : url(../img/inside.png);
+	background-repeat       : no-repeat;
+	background-position     : left;
+	        background-size : 60px 60px;
+	-webkit-background-size : 60px 60px;
+	width                   : 60px;
+	height                  : 60px;
+}
+
+.outsideimage {
+	background-image        : url(../img/outside.png);
+	background-repeat       : no-repeat;
+	        background-size : 60px 60px;
+	-webkit-background-size : 60px 60px;
+	background-position     : right;
+	width                   : 60px;
+	height                  : 60px;
+}
+
 tr {
-	height:20px;
+	height : 20px;
 }
+
 th {
-	font-size: 16px;
-	font-family: Arial;
-	color: #888;
-	padding-left: 5px;
-	padding-right: 5px;
-	text-align: left;
+	font-size     : 16px;
+	font-family   : Arial;
+	color         : #888;
+	padding-left  : 5px;
+	padding-right : 5px;
+	text-align    : left;
 }
+
 td {
-	font-size: 16px;
-	font-family: Arial;
-	padding-left: 5px;
-	padding-right: 5px;
-	text-align: right;
+	font-size     : 16px;
+	font-family   : Arial;
+	padding-left  : 5px;
+	padding-right : 5px;
+	text-align    : right;
 }
+
 .mm {
-	color: #888;
+	color : #888;
 }
+
 .lt {
-	font-size: 12px;
-	font-family: Arial;
-	color: #aaa;
+	font-size   : 12px;
+	font-family : Arial;
+	color       : #aaa;
 }
+
 .te {
-	font-size: 40px;
-	font-weight: normal;
-	font-family: Tahoma;
+	font-size   : 40px;
+	font-weight : normal;
+	font-family : Tahoma;
 }
+
 .er {
-	font-size: 10px;
-	font-family: Arial;
-	color: #faa;
+	font-size   : 10px;
+	font-family : Arial;
+	color       : #faa;
 }
+
 .da {
-	font-size: 12px;
-	font-family: Arial;
-	color: #aaa;
-	text-align: center;
+	font-size   : 12px;
+	font-family : Arial;
+	color       : #aaa;
+	text-align  : center;
 }

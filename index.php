@@ -3,8 +3,8 @@
 Name: Netatmo PHP Widget
 URI: https://www.potsky.com/code/netatmo/
 Description: A PHP Widget to display weather information of several locations and Netatmo modules
-Version: 0.3.3
-Date: 2014-01-08
+Version: 0.5
+Date: 2014-06-08
 Author: potsky
 Author URI: http://www.potsky.com/about/
 
@@ -342,11 +342,27 @@ if ( is_array( $result ) ) {
 
             foreach ($data['m'] as $moduleid=>$datam) {
 
-                $moduleid =sanitize_mac_id( $moduleid );
+                $moduleid = sanitize_mac_id( $moduleid );
+                $type     = ( is_null( $datam['results']['Temperature'] ) ) ? 'rain' : 'outside';
 
-                echo '<td id="outside' . $moduleid . '" class="outside" valign="top" align="right">';
+                echo '<td id="' . $type . $moduleid . '" class="' . $type . '" valign="top" align="right">';
 
-                $tempc = (float) $datam['results']['Temperature'];
+                if ( $type === 'rain' ) {
+                    $disp  = sprintf( __('%smm') , (int) $datam['results']['Rain'] );
+                    $color = '';
+                }
+                else {
+                    $tempc = (float) $datam['results']['Temperature'];
+                    $color = ' style="color:' . get_color( (int) $tempc ) . '"';
+
+                    if ( $unitmetric == 0 ) {
+                        $disp = sprintf( __('%s°C') , round( $tempc , 1 ) );
+                    }
+                    else {
+                        $disp = sprintf( __('%s°F') , round ( ( 9 / 5 ) * $tempc + 32 , 1) );
+                    }
+                }
+
                 $when  = sprintf( __('measured %1$s %2$s at %5$s:%6$s'),
                     utf8_encode( ucfirst( strftime( '%A' ,$datam['time'] ) ) ),
                     strftime( '%e' ,$datam['time'] ),
@@ -358,14 +374,9 @@ if ( is_array( $result ) ) {
 
                 echo '<table>';
 
-                echo '<tr><th class="te" style="color:' . get_color( (int) $tempc ) . '">';
-                if ( $unitmetric == 0 )
-                    echo sprintf( __('%s°C') , round( $tempc , 1 ) );
-                else
-                    echo sprintf( __('%s°F') , round ( ( 9 / 5 ) * $tempc + 32 , 1) );
-                echo '</th>';
+                echo '<tr><th class="te"' . $color . '>' . $disp . '</th>';
 
-                echo '<td align="right" class="outsideimage ' . $moduleid . '"></td></tr>';
+                echo '<td align="right" class="' . $type . 'image ' . $moduleid . '"></td></tr>';
 
                 $module_order     = ( isset( $_GET['mo'] ) ) ? $_GET['mo'] : NETATMO_MODULE_DEFAULT_VALUES;
                 $this_device_disp = $device_disp;
@@ -375,13 +386,16 @@ if ( is_array( $result ) ) {
                     $t = trim($t);
 
                     switch ($t) {
+
                         case 'Humidity':
+                            if ( is_null( $datam['results']['Humidity'] ) ) break;
                             echo '<tr><th>' . __('Humidity') .'</th>';
                             echo '<td>' . sprintf( __('%s%%') , $datam['results']['Humidity'] ) . '</td></tr>';
                             $this_device_disp--;
                             break;
 
                         case 'TemperatureMin' :
+                            if ( is_null( $datam['misc']['min_temp'] ) ) break;
                             echo '<tr><th valign="top">' . __('Temp Min') . '</th><td valign="top" class="mm">';
                             if ( $unitmetric == 0 )
                                 echo sprintf( __('%s°C') , round( (float) $datam['misc']['min_temp'] , 1 ) );
@@ -406,6 +420,7 @@ if ( is_array( $result ) ) {
                             break;
 
                         case 'TemperatureMax' :
+                            if ( is_null( $datam['misc']['max_temp'] ) ) break;
                             echo '<tr><th valign="top">' . __('Temp Max') . '</th><td valign="top" class="mm">';
                             if ( $unitmetric == 0 )
                                 echo sprintf( __('%s°C') , round( (float) $datam['misc']['max_temp'] , 1 ) );
@@ -430,6 +445,7 @@ if ( is_array( $result ) ) {
                             break;
 
                         case 'HumidityMin' :
+                            if ( is_null( $datam['misc']['min_hum'] ) ) break;
                             echo '<tr><th valign="top">' . __('Humidity Min') . '</th><td valign="top" class="mm">';
                             echo sprintf( __('%s%%') , (int) $datam['misc']['min_hum'] );
                             echo '</td></tr>';
@@ -451,6 +467,7 @@ if ( is_array( $result ) ) {
                             break;
 
                         case 'HumidityMax' :
+                            if ( is_null( $datam['misc']['max_hum'] ) ) break;
                             echo '<tr><th valign="top">' . __('Humidity Max') . '</th><td valign="top" class="mm">';
                             echo sprintf( __('%s%%') , (int) $datam['misc']['max_hum'] );
                             echo '</td></tr>';
@@ -465,6 +482,28 @@ if ( is_array( $result ) ) {
                                     strftime( '%Y' ,$datam['misc']['date_max_hum'] ),
                                     strftime( '%H' ,$datam['misc']['date_max_hum'] ),
                                     strftime( '%M' ,$datam['misc']['date_max_hum'] )
+                                );
+                                echo '</td></tr>';
+                                $this_device_disp--;
+                            }
+                            break;
+
+                        case 'RainSum' :
+                            if ( is_null( $datam['misc']['sum_rain'] ) ) break;
+                            echo '<tr><th valign="top">' . __('Rain Sum') . '</th><td valign="top" class="mm">';
+                            echo sprintf( __('%smm') , (int) $datam['misc']['sum_rain'] );
+                            echo '</td></tr>';
+                            $this_device_disp--;
+
+                            if ($mm_display_when) {
+                                echo '<tr><td class="mmd" colspan="2">';
+                                echo sprintf( __('on %1$s %2$s at %5$s:%6$s'),
+                                    utf8_encode( ucfirst( strftime( '%A' ,$datam['misc']['date_sum_rain'] ) ) ),
+                                    strftime( '%e' ,$datam['misc']['date_sum_rain'] ),
+                                    utf8_encode( ucfirst( strftime( '%B' ,$datam['misc']['date_sum_rain'] ) ) ),
+                                    strftime( '%Y' ,$datam['misc']['date_sum_rain'] ),
+                                    strftime( '%H' ,$datam['misc']['date_sum_rain'] ),
+                                    strftime( '%M' ,$datam['misc']['date_sum_rain'] )
                                 );
                                 echo '</td></tr>';
                                 $this_device_disp--;

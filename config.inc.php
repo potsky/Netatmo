@@ -97,8 +97,8 @@ define( 'NETATMO_WIDGET_VERSION'        , '0.4' );
 define( 'NETATMO_DEVICE_SCALES'         , '1day,1week,1month' );
 define( 'NETATMO_DEVICE_TYPE_MAIN'      , 'Temperature,Co2,Humidity,Noise,Pressure' );
 define( 'NETATMO_DEVICE_TYPE_MISC'      , 'min_temp,date_min_temp,max_temp,date_max_temp,min_hum,date_min_hum,max_hum,date_max_hum,min_pressure,date_min_pressure,max_pressure,date_max_pressure,min_noise,date_min_noise,max_noise,date_max_noise' );
-define( 'NETATMO_MODULE_TYPE_MAIN'      , 'Temperature,Humidity' );
-define( 'NETATMO_MODULE_TYPE_MISC'      , 'min_temp,date_min_temp,max_temp,date_max_temp,min_hum,date_min_hum,max_hum,date_max_hum' );
+define( 'NETATMO_MODULE_TYPE_MAIN'      , 'Temperature,Humidity,Rain' );
+define( 'NETATMO_MODULE_TYPE_MISC'      , 'min_temp,date_min_temp,max_temp,date_max_temp,min_hum,date_min_hum,max_hum,date_max_hum,sum_rain' );
 define( 'NETATMO_CACHE_DEFAULT_KEY'     , "netatmo-weather-station-api-" . NETATMO_WIDGET_VERSION );
 define( 'NETATMO_CACHE_TTL'             , 5*60 );
 

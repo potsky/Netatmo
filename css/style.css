@@ -32,34 +32,41 @@ table {
 	text-align : center;
 }
 
-#inside, td.outside {
+#inside, td.outside, td.rain {
 	border : 1px solid #ddd;
 }
 
-#inside table, td.outside table {
+#inside table, td.outside table, td.rain table {
 	border-collapse : collapse;
 	border          : 0;
 	width           : 260px;
 }
 
 .insideimage {
-	background-image        : url(../img/inside.png);
-	background-repeat       : no-repeat;
-	background-position     : left;
-	        background-size : 60px 60px;
-	-webkit-background-size : 60px 60px;
-	width                   : 60px;
-	height                  : 60px;
+	background-image    : url(../img/inside.png);
+	background-repeat   : no-repeat;
+	background-position : left;
+	background-size     : 60px 60px;
+	width               : 60px;
+	height              : 60px;
 }
 
 .outsideimage {
-	background-image        : url(../img/outside.png);
-	background-repeat       : no-repeat;
-	        background-size : 60px 60px;
-	-webkit-background-size : 60px 60px;
-	background-position     : right;
-	width                   : 60px;
-	height                  : 60px;
+	background-image    : url(../img/outside.png);
+	background-repeat   : no-repeat;
+	background-size     : 60px 60px;
+	background-position : right;
+	width               : 60px;
+	height              : 60px;
+}
+
+.rainimage {
+	background-image    : url(../img/rain.png);
+	background-repeat   : no-repeat;
+	background-size     : 60px 60px;
+	background-position : right;
+	width               : 60px;
+	height              : 60px;
 }
 
 tr {
@@ -97,6 +104,7 @@ td {
 	font-size   : 40px;
 	font-weight : normal;
 	font-family : Tahoma;
+	color       : #888;
 }
 
 .er {

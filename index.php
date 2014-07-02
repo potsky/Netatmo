@@ -393,6 +393,13 @@ if ( is_array( $result ) ) {
                             echo '<td>' . sprintf( __('%s%%') , $datam['results']['Humidity'] ) . '</td></tr>';
                             $this_device_disp--;
                             break;
+							
+						case 'CO2':
+						   if ( is_null( $datam['results']['CO2'] ) ) break;
+                           echo '<tr><th>' . __('CO2') . '</th>';
+						   echo '<td>' . sprintf( __('%sppm') , $datam['results']['CO2'] ) . '</td></tr>';
+                           $this_device_disp--;
+                           break;
 
                         case 'TemperatureMin' :
                             if ( is_null( $datam['misc']['min_temp'] ) ) break;

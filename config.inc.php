@@ -93,7 +93,7 @@ This file is in the .gitignore file so it will not be removed when pulling new v
  * No need to change this
  * Do not copy this in your config.user.inc.php file
  **************************************************************************/
-define( 'NETATMO_WIDGET_VERSION'        , '0.5' );
+define( 'NETATMO_WIDGET_VERSION'        , '0.5.1' );
 define( 'NETATMO_DEVICE_SCALES'         , '1day,1week,1month' );
 define( 'NETATMO_DEVICE_TYPE_MAIN'      , 'Temperature,Co2,Humidity,Noise,Pressure' );
 define( 'NETATMO_DEVICE_TYPE_MISC'      , 'min_temp,date_min_temp,max_temp,date_max_temp,min_hum,date_min_hum,max_hum,date_max_hum,min_pressure,date_min_pressure,max_pressure,date_max_pressure,min_noise,date_min_noise,max_noise,date_max_noise' );

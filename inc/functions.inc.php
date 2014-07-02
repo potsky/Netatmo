@@ -79,7 +79,12 @@ function get_netatmo($scale_device = '1day' , $scale_module = '1day')
 
     $scale_device = ( in_array( $scale_device , explode( ',' , NETATMO_DEVICE_SCALES ) ) ) ? $scale_device : '1day';
     $scale_module = ( in_array( $scale_module , explode( ',' , NETATMO_DEVICE_SCALES ) ) ) ? $scale_module : $scale_device;
-    $return       = array();
+    $return       = array(
+        'scales' => array(
+            'device' => $scale_device,
+            'module' => $scale_module,
+        )
+    );
 
     /*
     Netatmo job

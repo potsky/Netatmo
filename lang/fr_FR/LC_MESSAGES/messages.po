@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Netatmo Widget\n"
-"POT-Creation-Date: 2014-06-12 17:19+0100\n"
-"PO-Revision-Date: 2014-06-12 17:21+0100\n"
+"POT-Creation-Date: 2014-07-02 09:56+0100\n"
+"PO-Revision-Date: 2014-07-02 09:56+0100\n"
 "Last-Translator: Potsky <potsky@me.com>\n"
 "Language-Team: potsky <potsky@me.com>\n"
 "Language: fr_FR\n"
@@ -25,127 +25,144 @@ msgstr "Erreur de format de l'API "
 msgid "%1$s %2$s %3$s %4$s at %5$s:%6$s"
 msgstr "%1$s %2$s %3$s %4$s à %5$s:%6$s"
 
-#: index.php:75 index.php:366
+#: index.php:78 index.php:368
 #, php-format
 msgid "measured %1$s %2$s at %5$s:%6$s"
 msgstr "Mesuré le %1$s %2$s à %5$s:%6$s"
 
-#: index.php:93 index.php:152 index.php:177 index.php:359 index.php:401
-#: index.php:426
+#: index.php:96 index.php:155 index.php:180 index.php:361 index.php:410
+#: index.php:435
 #, php-format
 msgid "%s°C"
 msgstr "%s°C"
 
-#: index.php:95 index.php:154 index.php:179 index.php:362 index.php:403
-#: index.php:428
+#: index.php:98 index.php:157 index.php:182 index.php:364 index.php:412
+#: index.php:437
 #, php-format
 msgid "%s°F"
 msgstr "%s°F"
 
-#: index.php:115 index.php:392
+#: index.php:118 index.php:394
 msgid "Humidity"
 msgstr "Humidité"
 
-#: index.php:116 index.php:200 index.php:221 index.php:393 index.php:450
-#: index.php:472
+#: index.php:119 index.php:203 index.php:224 index.php:395 index.php:459
+#: index.php:481
 #, php-format
 msgid "%s%%"
 msgstr "%s%%"
 
-#: index.php:122
+#: index.php:125 index.php:401
 msgid "CO2"
 msgstr "CO2"
 
-#: index.php:123
+#: index.php:126 index.php:402
 #, php-format
 msgid "%sppm"
 msgstr "%sppm"
 
-#: index.php:129
+#: index.php:132
 msgid "Noise"
 msgstr "Ambiance"
 
-#: index.php:130 index.php:294 index.php:315
+#: index.php:133 index.php:297 index.php:318
 #, php-format
 msgid "%sdB"
 msgstr "%sdB"
 
-#: index.php:136
+#: index.php:139
 msgid "Pressure"
 msgstr "Pression"
 
-#: index.php:139 index.php:243 index.php:269
+#: index.php:142 index.php:246 index.php:272
 #, php-format
 msgid "%smbar"
 msgstr "%smbar"
 
-#: index.php:141 index.php:245 index.php:271
+#: index.php:144 index.php:248 index.php:274
 #, php-format
 msgid "%sinHg"
 msgstr "%sinHg"
 
-#: index.php:143 index.php:247 index.php:273
+#: index.php:146 index.php:250 index.php:276
 #, php-format
 msgid "%smmHg"
 msgstr "%smmHg"
 
-#: index.php:150 index.php:399
+#: index.php:153 index.php:408
 msgid "Temp Min"
 msgstr "Temp Min"
 
-#: index.php:161 index.php:185 index.php:206 index.php:227 index.php:253
-#: index.php:279 index.php:300 index.php:321 index.php:409 index.php:434
-#: index.php:456 index.php:478 index.php:500
+#: index.php:164 index.php:188 index.php:209 index.php:230 index.php:256
+#: index.php:282 index.php:303 index.php:324 index.php:418 index.php:443
+#: index.php:465 index.php:487 index.php:512
 #, php-format
 msgid "on %1$s %2$s at %5$s:%6$s"
 msgstr "le %1$s %2$s à %5$s:%6$s"
 
-#: index.php:175 index.php:424
+#: index.php:178 index.php:433
 msgid "Temp Max"
 msgstr "Temp Max"
 
-#: index.php:199 index.php:449
+#: index.php:202 index.php:458
 msgid "Humidity Min"
 msgstr "Humidité Min"
 
-#: index.php:220 index.php:471
+#: index.php:223 index.php:480
 msgid "Humidity Max"
 msgstr "Humidité Max"
 
-#: index.php:241
+#: index.php:244
 msgid "Pressure Min"
 msgstr "Pression Min"
 
-#: index.php:267
+#: index.php:270
 msgid "Pressure Max"
 msgstr "Pression Max"
 
-#: index.php:293
+#: index.php:296
 msgid "Noise Min"
 msgstr "Ambiance Min"
 
-#: index.php:314
+#: index.php:317
 msgid "Noise Max"
 msgstr "Ambiance Max"
 
-#: index.php:351 index.php:494
+#: index.php:353
+#, php-format
+msgid "%smm/h"
+msgstr "%smm/h"
+
+#: index.php:502
+msgid "1day"
+msgstr "24h"
+
+#: index.php:502
+msgid "1week"
+msgstr "7j"
+
+#: index.php:502
+msgid "1month"
+msgstr "mois"
+
+#: index.php:505
+msgid "Rain Sum"
+msgstr "Total Pluie"
+
+#: index.php:506
 #, php-format
 msgid "%smm"
 msgstr "%smm"
 
-#: index.php:493
-msgid "Rain Sum"
-msgstr "Total Pluie"
-
-#: index.php:531
+#: index.php:543
 msgid "Netatmo problem"
 msgstr "Problème Netatmo"
 
-#: index.php:532 raw.php:76
+#: index.php:544 raw.php:76
 msgid "No device"
 msgstr "Aucune station"
 
-#: index.php:538
+#: index.php:550
 msgid "Netatmo unreachable"
 msgstr "Netatmo injoignable"
 

@@ -62,7 +62,7 @@ function get_color($c,$min=3,$max=30,$r_min=0,$g_min=128,$b_min=255,$r_max=255,$
  *
  * @return   mixed                          an array with all weather station values or an exception object if error happens
  */
-function get_netatmo($scale_device = '1day' , $scale_module = '1day')
+function get_netatmo($scale_device = '1day' , $scale_module = '1day' )
 {
     global $NAconfig, $NAusername, $NApwd;
 
@@ -125,6 +125,12 @@ function get_netatmo($scale_device = '1day' , $scale_module = '1day')
                 );
                 $res = $client->api("getmeasure",'GET',$params);
 
+                if ( ( @defined( 'DEBUG' ) ) && ( DEBUG === 1 ) ) {
+                    echo '<pre>';
+                    var_dump( NETATMO_DEVICE_TYPE_MAIN , $res);
+                    echo '<hr/>';
+                }
+
                 if (isset($res[0]) && isset($res[0]["beg_time"])) {
                     $time = $res[0]["beg_time"];
                     $vals = explode( ',' , NETATMO_DEVICE_TYPE_MAIN );
@@ -143,10 +149,18 @@ function get_netatmo($scale_device = '1day' , $scale_module = '1day')
                     "device_id" => $device_id
                 );
                 $res = $client->api("getmeasure",'GET',$params);
+
+                if ( ( @defined( 'DEBUG' ) ) && ( DEBUG === 1 ) ) {
+                    echo '<pre>';
+                    var_dump( NETATMO_DEVICE_TYPE_MISC , $res);
+                    echo '<hr/>';
+                }
+
                 if (isset($res[0]) && isset($res[0]["beg_time"])) {
                     $vals = explode( ',' , NETATMO_DEVICE_TYPE_MISC );
-                    foreach( $res[0]["value"][0] as $key => $value )
+                    foreach( $res[0]["value"][0] as $key => $value ) {
                         $return[$device_id]['misc'][ $vals[$key] ] = $value;
+                    }
                 }
 
             }
@@ -171,10 +185,18 @@ function get_netatmo($scale_device = '1day' , $scale_module = '1day')
                     );
 
                     $res = $client->api("getmeasure",'GET',$params);
+
+                    if ( ( @defined( 'DEBUG' ) ) && ( DEBUG === 1 ) ) {
+                        echo '<pre>';
+                        var_dump( NETATMO_MODULE_TYPE_MAIN , $res );
+                        echo '<hr/>';
+                    }
+
                     if (isset($res[0]) && isset($res[0]["beg_time"])) {
                         $vals = explode( ',' , NETATMO_MODULE_TYPE_MAIN );
-                        foreach( $res[0]["value"][0] as $key => $value )
+                        foreach( $res[0]["value"][0] as $key => $value ) {
                             $return[$device_id]['m'][$module_id]['results'][ $vals[$key] ] = $value;
+                        }
                         $return[$device_id]['m'][$module_id]['name']    = $module["module_name"];
                         $return[$device_id]['m'][$module_id]['time']    = $res[0]["beg_time"];
                     }
@@ -188,10 +210,18 @@ function get_netatmo($scale_device = '1day' , $scale_module = '1day')
                     );
 
                     $res = $client->api("getmeasure",'GET',$params);
+
+                    if ( ( @defined( 'DEBUG' ) ) && ( DEBUG === 1 ) ) {
+                        echo '<pre>';
+                        var_dump( NETATMO_MODULE_TYPE_MISC , $res );
+                        echo '<hr/>';
+                    }
+
                     if (isset($res[0]) && isset($res[0]["beg_time"])) {
                         $vals = explode( ',' , NETATMO_MODULE_TYPE_MISC );
-                        foreach( $res[0]["value"][0] as $key => $value )
+                        foreach( $res[0]["value"][0] as $key => $value ) {
                             $return[$device_id]['m'][$module_id]['misc'][ $vals[$key] ] = $value;
+                        }
                     }
                 } catch (NAClientException $ex) {
                     return $ex;

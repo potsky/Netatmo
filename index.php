@@ -503,7 +503,7 @@ if ( is_array( $result ) ) {
 
 							if ( is_null( $datam['misc']['sum_rain'] ) ) break;
 							echo '<tr><th valign="top">' . __('Rain Sum') . ' (' . __( $scales['module'] ) . ')' . '</th><td valign="top" class="mm">';
-							echo sprintf( __('%smm') , (int) $datam['misc']['sum_rain'] );
+							echo sprintf( __('%smm') , floor( (float) $datam['misc']['sum_rain'] * 10 ) / 10 );
 							echo '</td></tr>';
 							$this_device_disp--;
 

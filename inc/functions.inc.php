@@ -114,7 +114,6 @@ function get_netatmo($scale_device = '1day' , $scale_module = '1day' )
         if (is_array($deviceList["devices"])) {
 
             foreach ($deviceList["devices"] as $device) {
-
                 $device_id = $device["_id"];
 
                 $params = array(

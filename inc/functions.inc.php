@@ -114,9 +114,9 @@ function get_netatmo($scale_device = '1day' , $scale_module = '1day' )
         if (is_array($deviceList["devices"])) {
 
             foreach ($deviceList["devices"] as $device) {
-                $device_id = $device["_id"];
-
-                $params = array(
+                $device_id                       = $device["_id"];
+                $return[$device_id]['dashboard'] = $device['dashboard_data'];
+                $params                          = array(
                     "scale"     => "max",
                     "type"      => NETATMO_DEVICE_TYPE_MAIN,
                     "date_end"  => "last",
@@ -172,8 +172,9 @@ function get_netatmo($scale_device = '1day' , $scale_module = '1day' )
         if (is_array($deviceList["modules"])) {
             foreach ($deviceList["modules"] as $module) {
                 try {
-                    $module_id = $module["_id"];
-                    $device_id = $module["main_device"];
+                    $module_id                                        = $module["_id"];
+                    $device_id                                        = $module["main_device"];
+                    $return[$device_id]['m'][$module_id]['dashboard'] = $module['dashboard_data'];
 
                     $params = array(
                         "scale"     => "max",

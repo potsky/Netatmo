@@ -58,6 +58,19 @@ function get_color($c,$min=3,$max=30,$r_min=0,$g_min=128,$b_min=255,$r_max=255,$
 }
 
 /**
+ * Remove
+ *
+ * @param   string  $string     the string representation of the list
+ * @param   string  $separator  the seperator char used to delimit items in the list
+ * @param   array   $values     the array of items to remove
+ *
+ * @return  string              the string representation of the list with separator and without provided items
+ */
+function remove_unknown_values( $string , $separator = ',' , $values = array( 'sum_rain_1' , 'sum_rain_24' ) ) {
+    return implode( $separator , array_diff( explode( $separator, $string ) , $values ) );
+}
+
+/**
  * Return array with Netatmo informations
  *
  * @return   mixed                          an array with all weather station values or an exception object if error happens
@@ -93,7 +106,7 @@ function get_netatmo($scale_device = '1day' , $scale_module = '1day' )
     $client->setVariable("username", $NAusername);
     $client->setVariable("password", $NApwd);
     try {
-        $tokens = $client->getAccessToken();
+        $tokens        = $client->getAccessToken();
         $refresh_token = $tokens["refresh_token"];
         $access_token  = $tokens["access_token"];
     } catch (NAClientException $ex) {
@@ -118,7 +131,7 @@ function get_netatmo($scale_device = '1day' , $scale_module = '1day' )
                 $return[$device_id]['dashboard'] = $device['dashboard_data'];
                 $params                          = array(
                     "scale"     => "max",
-                    "type"      => NETATMO_DEVICE_TYPE_MAIN,
+                    "type"      => remove_unknown_values( NETATMO_DEVICE_TYPE_MAIN ),
                     "date_end"  => "last",
                     "device_id" => $device_id
                 );
@@ -143,7 +156,7 @@ function get_netatmo($scale_device = '1day' , $scale_module = '1day' )
 
                 $params = array(
                     "scale"     => $scale_device,
-                    "type"      => NETATMO_DEVICE_TYPE_MISC,
+                    "type"      => remove_unknown_values( NETATMO_DEVICE_TYPE_MISC ),
                     "date_end"  => "last",
                     "device_id" => $device_id
                 );
@@ -178,7 +191,7 @@ function get_netatmo($scale_device = '1day' , $scale_module = '1day' )
 
                     $params = array(
                         "scale"     => "max",
-                        "type"      => NETATMO_MODULE_TYPE_MAIN,
+                        "type"      => remove_unknown_values( NETATMO_MODULE_TYPE_MAIN ),
                         "date_end"  => "last",
                         "device_id" => $device_id,
                         "module_id" => $module_id
@@ -203,7 +216,7 @@ function get_netatmo($scale_device = '1day' , $scale_module = '1day' )
 
                     $params = array(
                         "scale"     => $scale_module,
-                        "type"      => NETATMO_MODULE_TYPE_MISC,
+                        "type"      => remove_unknown_values( NETATMO_MODULE_TYPE_MISC ),
                         "date_end"  => "last",
                         "device_id" => $device_id,
                         "module_id" => $module_id

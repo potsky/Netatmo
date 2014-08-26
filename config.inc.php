@@ -37,7 +37,13 @@ This file is in the .gitignore file so it will not be removed when pulling new v
  * - constant below
  * - GET parameter is the dude
  */
+//define( 'WIDGET_LOCALE' , 'nl_NL' );
+//define( 'WIDGET_LOCALE' , 'en_GB' );
 //define( 'WIDGET_LOCALE' , 'fr_FR' );
+//define( 'WIDGET_LOCALE' , 'de_DE' );
+//define( 'WIDGET_LOCALE' , 'it_IT' );
+//define( 'WIDGET_LOCALE' , 'pl_PL' );
+//define( 'WIDGET_LOCALE' , 'es_ES' );
 
 
 /*
@@ -80,12 +86,7 @@ This file is in the .gitignore file so it will not be removed when pulling new v
  * You can change this
  */
 //define( 'NETATMO_DEVICE_DEFAULT_VALUES' , 'Humidity,CO2,Noise' );
-//define( 'NETATMO_MODULE_DEFAULT_VALUES' , 'Humidity' );
-
-
-
-
-
+//define( 'NETATMO_MODULE_DEFAULT_VALUES' , 'Humidity,Rain,RainSum,sum_rain_1,sum_rain_24' );
 
 
 /***************************************************************************
@@ -93,12 +94,12 @@ This file is in the .gitignore file so it will not be removed when pulling new v
  * No need to change this
  * Do not copy this in your config.user.inc.php file
  **************************************************************************/
-define( 'NETATMO_WIDGET_VERSION'        , '0.5.3' );
+define( 'NETATMO_WIDGET_VERSION'        , '0.5.4' );
 define( 'NETATMO_DEVICE_SCALES'         , '1day,1week,1month' );
 define( 'NETATMO_DEVICE_TYPE_MAIN'      , 'Temperature,Co2,Humidity,Noise,Pressure' );
 define( 'NETATMO_DEVICE_TYPE_MISC'      , 'min_temp,date_min_temp,max_temp,date_max_temp,min_hum,date_min_hum,max_hum,date_max_hum,min_pressure,date_min_pressure,max_pressure,date_max_pressure,min_noise,date_min_noise,max_noise,date_max_noise' );
 define( 'NETATMO_MODULE_TYPE_MAIN'      , 'Temperature,Humidity,CO2,Rain' );
-define( 'NETATMO_MODULE_TYPE_MISC'      , 'min_temp,date_min_temp,max_temp,date_max_temp,min_hum,date_min_hum,max_hum,date_max_hum,sum_rain' );
+define( 'NETATMO_MODULE_TYPE_MISC'      , 'min_temp,date_min_temp,max_temp,date_max_temp,min_hum,date_min_hum,max_hum,date_max_hum,sum_rain,sum_rain_1,sum_rain_24' );
 define( 'NETATMO_CACHE_DEFAULT_KEY'     , "netatmo-weather-station-api-" . NETATMO_WIDGET_VERSION );
 define( 'NETATMO_CACHE_TTL'             , 5*60 );
 

@@ -91,7 +91,7 @@ $result = get_netatmo( @$_GET['scd'] , @$_GET['scm'] );
 if (isset($result->result['error'])) {
     // Uncomment this to have more informations. Be carful, your password is in plain text!
     // var_dump($result);
-    die($result->result['error']);
+    die( print_r( $result->result['error'] , true ) );
 }
 
 if (!isset($result['user'])) {

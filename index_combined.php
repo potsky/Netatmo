@@ -343,6 +343,20 @@ if ( is_array( $result ) ) {
 
 			echo '</td>';
 
+			// Trick
+			$specialrain   = '';
+			$specialrain1  = '';
+			$specialrain24 = '';
+			foreach ($data['m'] as $moduleid=>$datam) {
+				if ( is_null( $datam['misc']['sum_rain'] ) ) continue;
+				$specialrain   = sprintf( __('%smm') , floor( (float) $datam['misc']['sum_rain'] * 10 ) / 10 );
+				$specialrain1  = sprintf( __('%smm') , $datam['dashboard']['sum_rain_1'] );
+				$specialrain24 = sprintf( __('%smm') , $datam['dashboard']['sum_rain_24'] );
+				unset($data['m'][$moduleid]);
+				break;
+			}
+			// Trick end
+
 			foreach ($data['m'] as $moduleid=>$datam) {
 				$moduleid = sanitize_mac_id( $moduleid );
 				$type     = ( is_null( $datam['results']['Temperature'] ) ) ? 'rain' : 'outside';
@@ -545,12 +559,26 @@ if ( is_array( $result ) ) {
 					}
 				}
 
+				// Trick
+				if ( $specialrain != '' ) {
+					//echo '<tr><th valign="top">' . __('Rain Sum') . ' (' . __( $scales['module'] ) . ')' . '</th><td valign="top" class="mm">';
+					//echo $specialrain;
+					//echo '</td></tr>';
+					echo '<tr><th valign="top">' . __('Rain Sum (24h)') . '</th><td valign="top" class="mm">';
+					echo $specialrain24;
+					echo '</td></tr>';
+					echo '<tr><th valign="top">' . __('Rain Sum (1h)') . '</th><td valign="top" class="mm">';
+					echo $specialrain1;
+					echo '</td></tr>';
+					$this_device_disp = $this_device_disp - 2;
+				}
+				// Trick end
+
 				for ($i=0; $i<$this_device_disp; $i++) {
 					echo '<tr><th></th><td></td></tr>';
 				}
 
 				echo '<tr><td colspan="2" class="da">' . $when . '</td></tr>';
-
 				echo '</table>';
 				echo '</td>';
 			}

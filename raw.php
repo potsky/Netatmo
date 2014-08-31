@@ -28,10 +28,12 @@ along with Netatmo PHP Widget.  If not, see <http://www.gnu.org/licenses/>.
 require_once( 'inc' . DIRECTORY_SEPARATOR . 'global.inc.php' );
 
 $text_wo_rain = "In external module '_device_name_:_name_', on _human_date_ at _human_hour_, temperature is _temp_°C and humidity is _humi_%";
-$text_wi_rain = "In external module '_device_name_:_name_', on _human_date_ at _human_hour_, temperature is _temp_°C, humidity is _humi_% and _rain_mm of rain fell in 24h";
+$text_wi_rain = "In external module '_device_name_:_name_', on _human_date_ at _human_hour_, temperature is _temp_°C, humidity is _humi_% and _rain24_mm of rain fell in 24h";
 
 if ( isset( $_GET['text_wo_rain'] ) ) $text_wo_rain = $_GET['text_wo_rain'];
 if ( isset( $_GET['text_wi_rain'] ) ) $text_wi_rain = $_GET['text_wi_rain'];
+
+$display = ( isset( $_GET['a'] ) ) ? (int)$_GET['a'] : 0;
 
 header('Content-type: text/plain; charset=UTF-8');
 
@@ -45,17 +47,28 @@ if ( is_array( $result ) ) {
 		// var_dump($result); die();
 
 		// For all devices -> in my case, I have 3 netamos : at home, at office and at my parents home
+		$idx = -1;
 		foreach ( $result as $data ) {
+
+			$idx++;
+			if ( $display > 0 ) {
+				if ( $idx !== $display ) continue;
+			}
 
 			// array 'data' is now just the subpart of the array 'result' for the first device, and the next time for the second, etc... until there is no more device to parse
 			$device_name = @$data['station'];
 
 			// find rain...
-			$rain = '';
+			$rain   = '';
+			$rain1  = '';
+			$rain24 = '';
 			if ( isset( $data['m'] ) && is_array( $data['m'] ) ) {
 				foreach ( $data['m'] as $moduleid => $datam ) {
 					if ( isset( $datam['dashboard']["sum_rain_24"] ) ) {
-						$rain = $datam['dashboard']["sum_rain_24"];
+						$rain24 = $datam['dashboard']["sum_rain_24"];
+						$rain1  = $datam['dashboard']["sum_rain_1"];
+						$rain   = $datam["misc"]["sum_rain"];
+						unset( $data['m'][ $moduleid ] );
 					}
 				}
 			}
@@ -82,14 +95,11 @@ if ( is_array( $result ) ) {
 					// Display the text that you want
 					// \n at the end puts a new line at the end of this one
 					echo str_replace(
-						array( '_device_name_' , '_name_' , '_human_date_' , '_human_hour_' , '_temp_' , '_humi_' , '_rain_' ),
-						array(  $device_name   ,  $name   ,  $human_date   ,  $human_hour   ,  $temp   ,  $humi   ,  $rain   ),
-						( $rain == '' ) ? $text_wo_rain : $text_wi_rain
+						array( '_device_name_' , '_name_' , '_human_date_' , '_human_hour_' , '_temp_' , '_humi_' , '_rain_' , '_rain1_' , '_rain24_' ),
+						array(  $device_name   ,  $name   ,  $human_date   ,  $human_hour   ,  $temp   ,  $humi   ,  $rain   ,  $rain1   , $rain24    ),
+						( $rain24 == '' ) ? $text_wo_rain : $text_wi_rain
 					);
 					echo "\n";
-
-					// Stop the script here to avoid looping to the next devices and the next external modules (foreach loops)
-					if ( ! isset( $_GET['a'] ) ) die();
 				}
 			}
 		}

@@ -41,6 +41,11 @@ Just copy the project directory on your server and configure it.
 
 ## Change log
 
+- **0.5.5**
+
+    - Add GET parameter `a` in `raw.php`
+    - Add `rain1` and `rain24` values for GET messages in `raw.php`
+    
 - **0.5.4**
 
     - Add `rain_sum_1` and `rain_sum_24` values
@@ -78,10 +83,12 @@ You can now specify 2 custom messages in the url when :
 
 Here are the distinct available parameters :
 
-- <http://xxx/raw.php> : english default messages
-- <http://xxx/raw.php?a=1> : display all weather stations
+- <http://xxx/raw.php> : english default messages and display all weather stations
+- <http://xxx/raw.php?a=1> : english default messages and display only the first weather station
+- <http://xxx/raw.php?a=2> : english default messages and display only the second weather station
 - <http://xxx/raw.php?text_wo_rain=Temperature is _temp_°C> : message without rain gauge
 - <http://xxx/raw.php?text_wi_rain=Temperature is _temp_°C and rain is _rain_> : message with rain gauge
+- <http://xxx/raw.php?text_wi_rain=...&text_wo_rain=...> : messages for both cases (rain and no rain)
 
 Available parameters in your message are :
 
@@ -91,7 +98,9 @@ Available parameters in your message are :
 - `_human_hour_`
 - `_temp_`
 - `_humi_`
-- `_rain_` 
+- `_rain_` : rain since the beginning of the day (or week or month if you have change the module scale parameter)
+- `_rain1_` : rain for 1 hour
+- `_rain24_` : rain for 24 hours
 
 ## More...
 

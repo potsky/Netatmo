@@ -3,8 +3,8 @@
 Name: Netatmo PHP Widget
 URI: https://www.potsky.com/code/netatmo/
 Description: A PHP Widget to display weather information of several locations and Netatmo modules
-Version: 0.5.4
-Date: 2014-08-24
+Version: 0.5.6
+Date: 2014-08-31
 Author: potsky
 Author URI: http://www.potsky.com/about/
 
@@ -84,7 +84,7 @@ if ( is_array( $result ) ) {
 				strftime( '%M' ,$data['time'] )
 			);
 
-			echo '<table class="' . htmlentities( $name . ' ' . sanitize_mac_id( $macid ) ) . '">';
+			echo '<table class="' . htmlentities( $name . ' m' . sanitize_mac_id( $macid ) ) . '">';
 			echo '<tr class="stationname"><td colspan="' . $blocks . '" id="title" align="center">' . $name . '</td></tr>';
 			echo '<tr class="stationdata">';
 			echo '	<td id="inside" valign="top" align="left">';
@@ -392,7 +392,7 @@ if ( is_array( $result ) ) {
 
 				echo '<tr><th class="te"' . $color . '>' . $disp . '</th>';
 
-				echo '<td align="right" class="' . $type . 'image ' . $moduleid . '"></td></tr>';
+				echo '<td align="right" class="' . $type . 'image m' . $moduleid . '"></td></tr>';
 
 				$module_order     = ( isset( $_GET['mo'] ) ) ? $_GET['mo'] : NETATMO_MODULE_DEFAULT_VALUES;
 				$this_device_disp = $device_disp;

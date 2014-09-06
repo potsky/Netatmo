@@ -41,6 +41,11 @@ Just copy the project directory on your server and configure it.
 
 ## Change log
 
+- **0.5.6**
+
+    - Prefix mac address class name with letter **m**, CSS class names beginning with a digit is not supported in browsers...
+    - Add a check for people who do not configure the widget
+
 - **0.5.5**
 
     - Add GET parameter `a` in `raw.php`

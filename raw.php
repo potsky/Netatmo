@@ -3,8 +3,8 @@
 Name: Netatmo PHP Widget
 URI: https://www.potsky.com/code/netatmo/
 Description: A PHP Widget to display weather information of several locations and Netatmo modules
-Version: 0.5.4
-Date: 2014-08-24
+Version: 0.5.6
+Date: 2014-08-31
 Author: potsky
 Author URI: http://www.potsky.com/about/
 
@@ -28,7 +28,7 @@ along with Netatmo PHP Widget.  If not, see <http://www.gnu.org/licenses/>.
 require_once( 'inc' . DIRECTORY_SEPARATOR . 'global.inc.php' );
 
 $text_wo_rain = "In external module '_device_name_:_name_', on _human_date_ at _human_hour_, temperature is _temp_°C and humidity is _humi_%";
-$text_wi_rain = "In external module '_device_name_:_name_', on _human_date_ at _human_hour_, temperature is _temp_°C, humidity is _humi_% and _rain24_mm of rain fell in 24h";
+$text_wi_rain = "In external module '_device_name_:_name_', on _human_date_ at _human_hour_, temperature is _temp_°C, humidity is _humi_% and _rain_mm of rain fell in 24h";
 
 if ( isset( $_GET['text_wo_rain'] ) ) $text_wo_rain = $_GET['text_wo_rain'];
 if ( isset( $_GET['text_wi_rain'] ) ) $text_wi_rain = $_GET['text_wi_rain'];

@@ -79,6 +79,10 @@ function get_netatmo($scale_device = '1day' , $scale_module = '1day' )
 {
     global $NAconfig, $NAusername, $NApwd;
 
+    if ( ( ! isset( $NAusername ) ) || ( ! isset( $NApwd ) ) || ( ! isset( $NAconfig ) ) ||  ( ! isset( $NAconfig['client_id'] ) ) ||  ( ! isset( $NAconfig['client_secret'] ) ) ) {
+        die("Oups! The widget is not configured! Take a look on this page : <a href='https://github.com/potsky/Netatmo#configuration'>https://github.com/potsky/Netatmo#configuration</a>");
+    }
+
     if ( function_exists( 'apc_exists' ) ) {
         if ( apc_exists( NETATMO_CACHE_KEY ) ) {
             $return = @unserialize( apc_fetch( NETATMO_CACHE_KEY ) );
@@ -102,7 +106,7 @@ function get_netatmo($scale_device = '1day' , $scale_module = '1day' )
     /*
     Netatmo job
      */
-    $client = new NAApiClient($NAconfig);
+    $client = new NAApiClient( $NAconfig );
     $client->setVariable("username", $NAusername);
     $client->setVariable("password", $NApwd);
     try {

@@ -103,9 +103,9 @@ Available parameters in your message are :
 - `_human_hour_`
 - `_temp_`
 - `_humi_`
-- `_rain_` : rain since the beginning of the day (or week or month if you have change the module scale parameter)
-- `_rain1_` : rain for 1 hour
-- `_rain24_` : rain for 24 hours
+- `_rain_` : nobody really knows what is this value !
+- `_rain1_` : amount of rain in last hour
+- `_rain24_` : amount of rain today
 
 ## More...
 

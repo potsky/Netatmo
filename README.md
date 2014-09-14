@@ -103,7 +103,7 @@ Available parameters in your message are :
 - `_human_hour_`
 - `_temp_`
 - `_humi_`
-- `_rain_` : nobody really knows what is this value !
+- `_rain_` : seems to be the last rain measured
 - `_rain1_` : amount of rain in last hour
 - `_rain24_` : amount of rain today
 

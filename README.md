@@ -4,7 +4,22 @@ Netatmo PHP Widget
 ## Requirements
 
 You need a web server with PHP 5.4+
+
 The *gettext PHP* extension is mandatory to localize the widget.
+
+The *Curl* extension is mandatory too to access the Netatmo API.
+
+> **Example**  
+> 
+> For ubuntu users, install the *Curl* extension :
+> 
+> ```
+> sudo apt-get install php5-curl
+> sudo service apache2 restart
+> ```
+>
+
+<!-- -->
 
 ## Installation
 

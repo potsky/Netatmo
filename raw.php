@@ -31,9 +31,9 @@ $text_wo_rain       = "In external module '_device_name_:_name_', on _human_date
 $text_wi_rain       = "In external module '_device_name_:_name_', on _human_date_ at _human_hour_, temperature is _temp_°C, humidity is _humi_% and _rain_mm of rain fell in 24h";
 $text_wo_rainsensor = "No rain sensor";
 
-if ( isset( $_GET['text_wo_rain'] ) )       $text_wo_rain = $_GET['text_wo_rain'];
-if ( isset( $_GET['text_wi_rain'] ) )       $text_wi_rain = $_GET['text_wi_rain'];
-if ( isset( $_GET['text_wo_rainsensor'] ) ) $text_wi_rain = $_GET['text_wo_rainsensor'];
+if ( isset( $_GET['text_wo_rain'] ) )       $text_wo_rain       = $_GET['text_wo_rain'];
+if ( isset( $_GET['text_wi_rain'] ) )       $text_wi_rain       = $_GET['text_wi_rain'];
+if ( isset( $_GET['text_wo_rainsensor'] ) ) $text_wo_rainsensor = $_GET['text_wo_rainsensor'];
 
 $display                     = ( isset( $_GET['a'] ) ) ? (int)$_GET['a'] : 0;
 $without_rain_sensor_seconds = ( isset( $_GET['r'] ) ) ? (int)$_GET['r'] : 60*60*24;

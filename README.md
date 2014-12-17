@@ -56,6 +56,10 @@ Just copy the project directory on your server and configure it.
 
 ## Change log
 
+- **0.5.7**
+
+    - Add `text_wo_rainsensor` and `r` parameters in `raw.php`
+
 - **0.5.6**
 
     - Prefix mac address class name with letter **m**, CSS class names beginning with a digit is not supported in browsers...
@@ -96,10 +100,11 @@ You can dump all Netatmo informations by calling this script.
 
 If you only want to display text instead of a widget, you can call `raw.php` instead of `index.php`.
 
-You can now specify 2 custom messages in the url when :
+You can now specify 3 custom messages in the url when :
 
-- there is a rain gauge information
-- there is no rain gauge information
+- there is a rain gauge information (`text_wi_rain`)
+- there is no rain gauge information (`text_wo_rain`)
+- there is no rain gauge information for more than a count of seconds (`text_wo_rainsensor` and the coutn of seconds is defined by the `r` parameter. Default is 24h, ie 86400)
 
 Here are the distinct available parameters :
 
@@ -109,6 +114,7 @@ Here are the distinct available parameters :
 - <http://xxx/raw.php?text_wo_rain=Temperature is _temp_°C> : message without rain gauge
 - <http://xxx/raw.php?text_wi_rain=Temperature is _temp_°C and rain is _rain_> : message with rain gauge
 - <http://xxx/raw.php?text_wi_rain=...&text_wo_rain=...> : messages for both cases (rain and no rain)
+- <http://xxx/raw.php?r=43200&text_wo_rainsensor=No rain sensor for more than 12 hours: message when rain sensor has not sent informations for more than the value of the `r` parameter in seconds
 
 Available parameters in your message are :
 

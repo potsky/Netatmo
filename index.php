@@ -501,7 +501,7 @@ if ( is_array( $result ) ) {
 							// Lang trick
 							$a = __('1day') . __('1week') . __('1month');
 
-							if ( is_null( $datam['misc']['sum_rain'] ) ) break;
+							if ( is_null( @$datam['misc']['sum_rain'] ) ) break;
 							echo '<tr><th valign="top">' . __('Rain Sum') . ' (' . __( $scales['module'] ) . ')' . '</th><td valign="top" class="mm">';
 							echo sprintf( __('%smm') , floor( (float) $datam['misc']['sum_rain'] * 10 ) / 10 );
 							echo '</td></tr>';

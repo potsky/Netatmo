@@ -68,11 +68,11 @@ if ( is_array( $result ) ) {
 			$rain24 = '';
 			if ( isset( $data['m'] ) && is_array( $data['m'] ) ) {
 				foreach ( $data['m'] as $moduleid => $datam ) {
-					if ( isset( $datam['dashboard']["sum_rain_24"] ) ) {
+					if ( ( isset( $datam['dashboard']["sum_rain_24"] ) ) || ( isset( $datam['dashboard']["Rain"] ) ) ) {
 						$without_rain_sensor_offset = time() - (int)@$datam['dashboard']['time_utc'];
-						$rain24                     = $datam['dashboard']["sum_rain_24"];
-						$rain1                      = $datam['dashboard']["sum_rain_1"];
-						$rain                       = $datam["misc"]["sum_rain"];
+						$rain24                     = @$datam['dashboard']["sum_rain_24"];
+						$rain1                      = @$datam['dashboard']["sum_rain_1"];
+						$rain                       = @$datam["misc"]["sum_rain"];
 						unset( $data['m'][ $moduleid ] );
 					}
 				}

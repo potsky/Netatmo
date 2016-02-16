@@ -1,0 +1,221 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Netatmo Widget\n"
+"POT-Creation-Date: 2015-12-01 09:29+0100\n"
+"PO-Revision-Date: 2016-02-16 15:29+0100\n"
+"Language: sv\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.7\n"
+"X-Poedit-KeywordsList: gettext;gettext_noop;_x;_e;__;esc_attr__;esc_attr_e;"
+"esc_html__;esc_html_e;_ex;esc_attr_x;esc_html_x;_n;_nx;_n_noop;_nx_noop\n"
+"X-Poedit-Basepath: ../../../\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 "
+"|| n%100>=20) ? 1 : 2);\n"
+"Last-Translator: Potsky\n"
+"Language-Team: \n"
+"X-Poedit-SearchPath-0: .\n"
+
+#: inc/global.inc.php:119 inc/global.inc.php:126
+msgid "API format error"
+msgstr "Felaktigt API anrop"
+
+#: index.php:49 index_combined.php:50
+#, php-format
+msgid "%1$s %2$s %3$s %4$s at %5$s:%6$s"
+msgstr "%1$s %2$s %3$s %4$s kl. %5$s:%6$s"
+
+#: index.php:77 index.php:403 index_combined.php:78 index_combined.php:418
+#, php-format
+msgid "measured %1$s %2$s at %5$s:%6$s"
+msgstr "Uppmätt %1$s %2$s kl. %5$s:%6$s"
+
+#: index.php:95 index.php:154 index.php:179 index.php:395 index.php:448
+#: index.php:474 index_combined.php:96 index_combined.php:155
+#: index_combined.php:180 index_combined.php:410 index_combined.php:463
+#: index_combined.php:489
+#, php-format
+msgid "%s°C"
+msgstr "%s°C"
+
+#: index.php:97 index.php:156 index.php:181 index.php:399 index.php:450
+#: index.php:476 index_combined.php:98 index_combined.php:157
+#: index_combined.php:182 index_combined.php:414 index_combined.php:465
+#: index_combined.php:491
+#, php-format
+msgid "%s°F"
+msgstr "%s°F"
+
+#: index.php:117 index.php:430 index_combined.php:118 index_combined.php:445
+msgid "Humidity"
+msgstr "Luftfuktighet"
+
+#: index.php:118 index.php:202 index.php:223 index.php:431 index.php:499
+#: index.php:522 index_combined.php:119 index_combined.php:203
+#: index_combined.php:224 index_combined.php:446 index_combined.php:514
+#: index_combined.php:537
+#, php-format
+msgid "%s%%"
+msgstr "%s%%"
+
+#: index.php:124 index.php:438 index_combined.php:125 index_combined.php:453
+msgid "CO2"
+msgstr "CO2"
+
+#: index.php:125 index.php:439 index_combined.php:126 index_combined.php:454
+#, php-format
+msgid "%sppm"
+msgstr "%sppm"
+
+#: index.php:131 index_combined.php:132
+msgid "Noise"
+msgstr "Ljudnivå"
+
+#: index.php:132 index.php:296 index.php:317 index_combined.php:133
+#: index_combined.php:297 index_combined.php:318
+#, php-format
+msgid "%sdB"
+msgstr "%sdB"
+
+#: index.php:138 index_combined.php:139
+msgid "Pressure"
+msgstr "Lufttryck"
+
+#: index.php:141 index.php:245 index.php:271 index_combined.php:142
+#: index_combined.php:246 index_combined.php:272
+#, php-format
+msgid "%smbar"
+msgstr "%smbar"
+
+#: index.php:143 index.php:247 index.php:273 index_combined.php:144
+#: index_combined.php:248 index_combined.php:274
+#, php-format
+msgid "%sinHg"
+msgstr "%sinHg"
+
+#: index.php:145 index.php:249 index.php:275 index_combined.php:146
+#: index_combined.php:250 index_combined.php:276
+#, php-format
+msgid "%smmHg"
+msgstr "%smmHg"
+
+#: index.php:152 index.php:446 index_combined.php:153 index_combined.php:461
+msgid "Temp Min"
+msgstr "Min Temp"
+
+#: index.php:163 index.php:187 index.php:208 index.php:229 index.php:255
+#: index.php:281 index.php:302 index.php:323 index.php:456 index.php:482
+#: index.php:505 index.php:528 index.php:555 index_combined.php:164
+#: index_combined.php:188 index_combined.php:209 index_combined.php:230
+#: index_combined.php:256 index_combined.php:282 index_combined.php:303
+#: index_combined.php:324 index_combined.php:471 index_combined.php:497
+#: index_combined.php:520 index_combined.php:543 index_combined.php:572
+#, php-format
+msgid "on %1$s %2$s at %5$s:%6$s"
+msgstr "%1$s %2$s kl. %5$s:%6$s"
+
+#: index.php:177 index.php:472 index_combined.php:178 index_combined.php:487
+msgid "Temp Max"
+msgstr "Max Temp"
+
+#: index.php:201 index.php:498 index_combined.php:202 index_combined.php:513
+msgid "Humidity Min"
+msgstr "Luftfuktighet Min"
+
+#: index.php:222 index.php:521 index_combined.php:223 index_combined.php:536
+msgid "Humidity Max"
+msgstr "Luftfuktighet Max"
+
+#: index.php:243 index_combined.php:244
+msgid "Pressure Min"
+msgstr "Lufttryck Min"
+
+#: index.php:269 index_combined.php:270
+msgid "Pressure Max"
+msgstr "Lufttryck Max"
+
+#: index.php:295 index_combined.php:296
+msgid "Noise Min"
+msgstr "Ljudnivå Min"
+
+#: index.php:316 index_combined.php:317
+msgid "Noise Max"
+msgstr "Ljudnivå Max"
+
+#: index.php:369 index_combined.php:384
+#, php-format
+msgid "%smm/h"
+msgstr "%smm/h"
+
+#: index.php:375 index.php:593 index_combined.php:390 index_combined.php:610
+#, fuzzy, php-format
+msgid "%skm/h"
+msgstr "%smm/h"
+
+#: index.php:379 index.php:597 index_combined.php:394 index_combined.php:614
+#, php-format
+msgid "%smph"
+msgstr ""
+
+#: index.php:385 index.php:610 index_combined.php:400 index_combined.php:627
+#, fuzzy, php-format
+msgid "%s°"
+msgstr "Uppmätt %1$s %2$s kl. %5$s:%6$s"
+
+#: index.php:545 index_combined.php:560
+msgid "1day"
+msgstr "Dag"
+
+#: index.php:545 index_combined.php:560
+msgid "1week"
+msgstr "Vecka"
+
+#: index.php:545 index_combined.php:560
+msgid "1month"
+msgstr "Månad"
+
+#: index.php:548 index_combined.php:565
+msgid "Rain Sum"
+msgstr "Regnmängd"
+
+#: index.php:549 index.php:573 index.php:583 index_combined.php:352
+#: index_combined.php:353 index_combined.php:354 index_combined.php:566
+#: index_combined.php:590 index_combined.php:600
+#, php-format
+msgid "%smm"
+msgstr "%smm"
+
+#: index.php:572 index_combined.php:589 index_combined.php:642
+#, fuzzy
+msgid "Rain Sum (24h)"
+msgstr "Regnmängd"
+
+#: index.php:582 index_combined.php:599 index_combined.php:645
+#, fuzzy
+msgid "Rain Sum (1h)"
+msgstr "Regnmängd"
+
+#: index.php:599 index_combined.php:616
+msgid "Gust Strength"
+msgstr "Byvind"
+
+#: index.php:609 index_combined.php:626
+msgid "Gust Angle"
+msgstr "Vindriktning"
+
+#: index.php:633 index_combined.php:666
+msgid "Netatmo problem"
+msgstr "Netatmo problem"
+
+#: index.php:634 index_combined.php:667 raw.php:161
+msgid "No device"
+msgstr "Hittar ingen enhet"
+
+#: index.php:640 index_combined.php:673
+msgid "Netatmo unreachable"
+msgstr "Kan inte kontakta Netatmo"
+
+#~ msgid "Hello"
+#~ msgstr "Hej"

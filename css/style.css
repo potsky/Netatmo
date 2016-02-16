@@ -1,0 +1,211 @@
+/*
+You can overwrite some values in your user stylesheet.
+You have to create a style.user.css file in this directory and write what you want, it will be loaded after this one.
+The file style.user.css is in the .gitignore file so it will never be deleted or removeed when pulling new versions from GitHub
+*/
+
+body {
+	background-color : #fff;
+	padding          : 10px;
+	color            : #333;
+	font-family      : Arial;
+	font-size        : 27px;
+	overflow         : hidden;
+	overflow-x       : hidden;
+	overflow-y       : hidden;
+}
+
+#container {
+}
+
+table {
+	background      : #fff;
+	border-collapse : collapse;
+	border          : 1px solid #ddd;
+	margin          : 0;
+	padding         : 0;
+}
+
+#title {
+	border     : 1px solid #ddd;
+	height     : 20px;
+	text-align : center;
+}
+
+#inside, td.outside, td.rain, td.wind {
+	border : 1px solid #ddd;
+}
+
+#inside table, td.outside table, td.rain table, td.wind table {
+	border-collapse : collapse;
+	border          : 0;
+	width           : 260px;
+}
+
+.insideimage {
+	background-image    : url(../img/inside.png);
+	background-repeat   : no-repeat;
+	background-position : left;
+	background-size     : 60px 60px;
+	width               : 60px;
+	height              : 60px;
+}
+
+.outsideimage {
+	background-image    : url(../img/outside.png);
+	background-repeat   : no-repeat;
+	background-size     : 60px 60px;
+	background-position : right;
+	width               : 60px;
+	height              : 60px;
+}
+
+.rainimage {
+	background-image    : url(../img/rain.png);
+	background-repeat   : no-repeat;
+	background-size     : 60px 60px;
+	background-position : right;
+	width               : 60px;
+	height              : 60px;
+}
+
+.windimage {
+	background-repeat   : no-repeat;
+	background-size     : 48px 48px;
+	background-position : right;
+	width               : 60px;
+	height              : 60px;
+}
+
+.windimage0 {
+	background-image : url(../img/wind-bc-n-64.png);
+/*	background-image : url(../img/wind-bci-n-64.png);*/
+/*	background-image : url(../img/wind-n-64.png);*/
+}
+.windimage1 {
+	background-image : url(../img/wind-bc-nne-64.png);
+/*	background-image : url(../img/wind-bci-nne-64.png);*/
+/*	background-image : url(../img/wind-nne-64.png);*/
+}
+.windimage2 {
+	background-image : url(../img/wind-bc-ne-64.png);
+/*	background-image : url(../img/wind-bci-ne-64.png);*/
+/*	background-image : url(../img/wind-ne-64.png);*/
+}
+.windimage3 {
+	background-image : url(../img/wind-bc-ene-64.png);
+/*	background-image : url(../img/wind-bci-ene-64.png);*/
+/*	background-image : url(../img/wind-ene-64.png);*/
+}
+.windimage4 {
+	background-image : url(../img/wind-bc-e-64.png);
+/*	background-image : url(../img/wind-bci-e-64.png);*/
+/*	background-image : url(../img/wind-e-64.png);*/
+}
+.windimage5 {
+	background-image : url(../img/wind-bc-ese-64.png);
+/*	background-image : url(../img/wind-bci-ese-64.png);*/
+/*	background-image : url(../img/wind-ese-64.png);*/
+}
+.windimage6 {
+	background-image : url(../img/wind-bc-se-64.png);
+/*	background-image : url(../img/wind-bci-se-64.png);*/
+/*	background-image : url(../img/wind-se-64.png);*/
+}
+.windimage7 {
+	background-image : url(../img/wind-bc-sse-64.png);
+/*	background-image : url(../img/wind-bci-sse-64.png);*/
+/*	background-image : url(../img/wind-sse-64.png);*/
+}
+.windimage8 {
+	background-image : url(../img/wind-bc-s-64.png);
+/*	background-image : url(../img/wind-bci-s-64.png);*/
+/*	background-image : url(../img/wind-s-64.png);*/
+}
+.windimage9 {
+	background-image : url(../img/wind-bc-ssw-64.png);
+/*	background-image : url(../img/wind-bci-ssw-64.png);*/
+/*	background-image : url(../img/wind-ssw-64.png);*/
+}
+.windimage10 {
+	background-image : url(../img/wind-bc-sw-64.png);
+/*	background-image : url(../img/wind-bci-sw-64.png);*/
+/*	background-image : url(../img/wind-sw-64.png);*/
+}
+.windimage11 {
+	background-image : url(../img/wind-bc-wsw-64.png);
+/*	background-image : url(../img/wind-bci-wsw-64.png);*/
+/*	background-image : url(../img/wind-wsw-64.png);*/
+}
+.windimage12 {
+	background-image : url(../img/wind-bc-w-64.png);
+/*	background-image : url(../img/wind-bci-w-64.png);*/
+/*	background-image : url(../img/wind-w-64.png);*/
+}
+.windimage13 {
+	background-image : url(../img/wind-bc-wnw-64.png);
+/*	background-image : url(../img/wind-bci-wnw-64.png);*/
+/*	background-image : url(../img/wind-wnw-64.png);*/
+}
+.windimage14 {
+	background-image : url(../img/wind-bc-nw-64.png);
+/*	background-image : url(../img/wind-bci-nw-64.png);*/
+/*	background-image : url(../img/wind-nw-64.png);*/
+}
+.windimage15 {
+	background-image : url(../img/wind-bc-nnw-64.png);
+/*	background-image : url(../img/wind-bci-nnw-64.png);*/
+/*	background-image : url(../img/wind-nnw-64.png);*/
+}
+
+
+tr {
+	height : 20px;
+}
+
+th {
+	font-size     : 16px;
+	font-family   : Arial;
+	color         : #888;
+	padding-left  : 5px;
+	padding-right : 5px;
+	text-align    : left;
+}
+
+td {
+	font-size     : 16px;
+	font-family   : Arial;
+	padding-left  : 5px;
+	padding-right : 5px;
+	text-align    : right;
+}
+
+.mm {
+	color : #888;
+}
+
+.lt {
+	font-size   : 12px;
+	font-family : Arial;
+	color       : #aaa;
+}
+
+.te {
+	font-size   : 40px;
+	font-weight : normal;
+	font-family : Tahoma;
+	color       : #888;
+}
+
+.er {
+	font-size   : 10px;
+	font-family : Arial;
+	color       : #faa;
+}
+
+.da {
+	font-size   : 12px;
+	font-family : Arial;
+	color       : #aaa;
+	text-align  : center;
+}

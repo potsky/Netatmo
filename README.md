@@ -1,6 +1,10 @@
 Netatmo PHP Widget
 ==================
 
+# NO MORE SUPPORTED
+
+The Netatmo API has changed in 2017. No more time to support this.
+
 ## Requirements
 
 You need a web server with PHP 5.4+
